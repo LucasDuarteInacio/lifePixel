@@ -20,8 +20,17 @@ export function useGameState() {
     error: null
   });
 
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure we're on the client side
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   // Carregar estado salvo do localStorage
   useEffect(() => {
+    if (!isClient) return;
+
     try {
       const savedState = localStorage.getItem(STORAGE_KEY);
       if (savedState) {
@@ -43,18 +52,18 @@ export function useGameState() {
       console.error('Erro ao carregar estado do jogo:', error);
       setGameState(prev => ({ ...prev, isLoading: false, error: 'Erro ao carregar dados' }));
     }
-  }, []);
+  }, [isClient]);
 
   // Salvar estado no localStorage sempre que mudar
   useEffect(() => {
-    if (!gameState.isLoading) {
+    if (!gameState.isLoading && isClient) {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(gameState));
       } catch (error) {
         console.error('Erro ao salvar estado do jogo:', error);
       }
     }
-  }, [gameState]);
+  }, [gameState, isClient]);
 
   /**
    * Criar um novo personagem
@@ -64,12 +73,15 @@ export function useGameState() {
     gender?: 'male' | 'female';
     country?: string;
   }) => {
+    // Only generate random data on the client side
+    if (!isClient) return;
+
     const gender = customData?.gender || getRandomGender();
     const name = customData?.name || getRandomName(gender);
     const country = customData?.country || getRandomCountry().name;
 
     const character: Character = {
-      id: Date.now().toString(),
+      id: `char_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       name,
       gender,
       country,
@@ -111,7 +123,7 @@ export function useGameState() {
    * Avançar um ano na vida do personagem
    */
   const advanceYear = () => {
-    if (!gameState.character || !gameState.character.isAlive) return;
+    if (!gameState.character || !gameState.character.isAlive || !isClient) return;
 
     const character = { ...gameState.character };
     character.age += 1;
@@ -121,7 +133,7 @@ export function useGameState() {
     const event = generateRandomEvent(character.age, character);
     if (event) {
       const gameEvent = {
-        id: `${event.id}_${Date.now()}`,
+        id: `${event.id}_${character.age}_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`,
         title: event.title,
         description: event.description,
         age: character.age,

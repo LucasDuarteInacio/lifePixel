@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Character } from '@/types/game';
 
 interface StatusScreenProps {
@@ -12,6 +12,13 @@ interface StatusScreenProps {
  * Tela de status detalhado do personagem
  */
 export default function StatusScreen({ character, onBackToGame }: StatusScreenProps) {
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure we're on the client side to prevent hydration mismatch with locale functions
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const getStatusColor = (value: number) => {
     if (value >= 80) return 'text-green-400';
     if (value >= 60) return 'text-yellow-400';
@@ -20,6 +27,8 @@ export default function StatusScreen({ character, onBackToGame }: StatusScreenPr
   };
 
   const getMoneyDisplay = (money: number) => {
+    if (!isClient) return money >= 0 ? `R$ ${money}` : `-R$ ${Math.abs(money)}`;
+    
     if (money >= 0) {
       return `R$ ${money.toLocaleString()}`;
     }
@@ -36,6 +45,11 @@ export default function StatusScreen({ character, onBackToGame }: StatusScreenPr
       case 'phd': return 'Doutorado';
       default: return 'Nenhuma';
     }
+  };
+
+  const getFormattedDate = (date: Date) => {
+    if (!isClient) return date.toISOString().split('T')[0];
+    return date.toLocaleDateString('pt-BR');
   };
 
   return (
@@ -91,7 +105,7 @@ export default function StatusScreen({ character, onBackToGame }: StatusScreenPr
               <div className="flex justify-between">
                 <span className="text-white/60">Criado em:</span>
                 <span className="text-white font-medium">
-                  {character.createdAt.toLocaleDateString('pt-BR')}
+                  {getFormattedDate(character.createdAt)}
                 </span>
               </div>
             </div>
@@ -159,7 +173,7 @@ export default function StatusScreen({ character, onBackToGame }: StatusScreenPr
               <div className="flex justify-between">
                 <span className="text-white/60">Salário:</span>
                 <span className="text-white font-medium">
-                  {character.career.salary > 0 ? `R$ ${character.career.salary.toLocaleString()}` : 'R$ 0'}
+                  {character.career.salary > 0 ? getMoneyDisplay(character.career.salary) : 'R$ 0'}
                 </span>
               </div>
               <div className="flex justify-between">

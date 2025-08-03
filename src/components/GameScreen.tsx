@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Character } from '@/types/game';
 
 interface GameScreenProps {
@@ -21,6 +21,13 @@ export default function GameScreen({
   onShowEvents, 
   onBackToStart 
 }: GameScreenProps) {
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure we're on the client side to prevent hydration mismatch with locale functions
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const latestEvent = character.events[character.events.length - 1];
 
   const getStatusColor = (value: number) => {
@@ -31,6 +38,8 @@ export default function GameScreen({
   };
 
   const getMoneyDisplay = (money: number) => {
+    if (!isClient) return money >= 0 ? `R$ ${money}` : `-R$ ${Math.abs(money)}`;
+    
     if (money >= 0) {
       return `R$ ${money.toLocaleString()}`;
     }
@@ -218,7 +227,7 @@ export default function GameScreen({
                 <div className="flex justify-between">
                   <span className="text-white/60">Salário:</span>
                   <span className="text-white font-medium">
-                    {character.career.salary > 0 ? `R$ ${character.career.salary.toLocaleString()}` : 'R$ 0'}
+                    {character.career.salary > 0 ? getMoneyDisplay(character.career.salary) : 'R$ 0'}
                   </span>
                 </div>
               </div>

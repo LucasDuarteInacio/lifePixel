@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getRandomName, getRandomGender } from '@/data/names';
 import { getRandomCountry } from '@/data/countries';
 import { countries } from '@/data/countries';
@@ -27,12 +27,21 @@ export default function StartScreen({
   const [customName, setCustomName] = useState('');
   const [customGender, setCustomGender] = useState<'male' | 'female'>('male');
   const [customCountry, setCustomCountry] = useState('');
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure we're on the client side to prevent hydration mismatch
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleRandomCharacter = () => {
+    if (!isClient) return;
     onCreateCharacter();
   };
 
   const handleCustomCharacter = () => {
+    if (!isClient) return;
+    
     if (customName.trim()) {
       onCreateCharacter({
         name: customName.trim(),

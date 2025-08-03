@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Character } from '@/types/game';
 
 interface EventsScreenProps {
@@ -12,6 +12,13 @@ interface EventsScreenProps {
  * Tela de eventos com lista cronológica de todos os eventos da vida
  */
 export default function EventsScreen({ character, onBackToGame }: EventsScreenProps) {
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure we're on the client side to prevent hydration mismatch with locale functions
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const sortedEvents = [...character.events].sort((a, b) => a.age - b.age);
 
   const getEventTypeColor = (type: string) => {
@@ -41,6 +48,8 @@ export default function EventsScreen({ character, onBackToGame }: EventsScreenPr
   };
 
   const formatDate = (date: Date) => {
+    if (!isClient) return date.toISOString().split('T')[0];
+    
     return date.toLocaleDateString('pt-BR', {
       day: '2-digit',
       month: '2-digit',
@@ -142,7 +151,7 @@ export default function EventsScreen({ character, onBackToGame }: EventsScreenPr
                               <span className={`px-2 py-1 rounded text-xs ${
                                 event.effects.money > 0 ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'
                               }`}>
-                                Dinheiro {event.effects.money > 0 ? '+' : ''}R$ {event.effects.money.toLocaleString()}
+                                Dinheiro {event.effects.money > 0 ? '+' : ''}R$ {isClient ? event.effects.money.toLocaleString() : event.effects.money}
                               </span>
                             )}
                             {event.effects.intelligence && (
