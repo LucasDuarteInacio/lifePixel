@@ -1,4 +1,4 @@
-# VidaPixel - Simulador de Vida
+# LifePixel - Simulador de Vida
 
 Um jogo de simulação de vida estilo BitLife desenvolvido com React, TypeScript e Electron.
 

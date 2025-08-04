@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🚀 Iniciando VidaPixel em modo desenvolvimento..."
+echo "🚀 Iniciando LifePixel em modo desenvolvimento..."
 
 # Verificar se as dependências estão instaladas
 if [ ! -d "node_modules" ]; then

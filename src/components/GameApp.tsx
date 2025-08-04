@@ -1,12 +1,8 @@
-"use client";
-
-import React from 'react';
 import { useGameState } from '@/hooks/useGameState';
 import { useHydration } from '@/hooks/useHydration';
 import StartScreen from './StartScreen';
 import GameScreen from './GameScreen';
 import StatusScreen from './StatusScreen';
-import EventsScreen from './EventsScreen';
 import LoadingScreen from './LoadingScreen';
 
 /**
@@ -52,6 +48,7 @@ export default function GameApp() {
           onCreateCharacter={createCharacter}
           onContinueGame={() => setScreen('game')}
           hasExistingGame={!!gameState.character}
+          character={gameState.character}
         />
       );
 
@@ -65,7 +62,6 @@ export default function GameApp() {
           character={gameState.character}
           onAdvanceYear={advanceYear}
           onShowStatus={() => setScreen('status')}
-          onShowEvents={() => setScreen('events')}
           onBackToStart={() => setScreen('start')}
         />
       );
@@ -82,17 +78,6 @@ export default function GameApp() {
         />
       );
 
-    case 'events':
-      if (!gameState.character) {
-        setScreen('start');
-        return null;
-      }
-      return (
-        <EventsScreen
-          character={gameState.character}
-          onBackToGame={() => setScreen('game')}
-        />
-      );
 
     default:
       setScreen('start');

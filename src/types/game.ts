@@ -1,5 +1,5 @@
 /**
- * Tipos principais do jogo VidaPixel
+ * Tipos principais do jogo lifePixel
  */
 
 export interface Character {

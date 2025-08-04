@@ -1,12 +1,10 @@
-"use client";
-
 import { useState, useEffect } from 'react';
 import { GameState, Character } from '@/types/game';
 import { getRandomName, getRandomGender, generateFamily } from '@/data/names';
 import { getRandomCountry } from '@/data/countries';
 import { generateRandomEvent } from '@/data/events';
 
-const STORAGE_KEY = 'vidapixel_game_state';
+const STORAGE_KEY = 'lifePixel_game_state';
 
 /**
  * Hook personalizado para gerenciar o estado do jogo
