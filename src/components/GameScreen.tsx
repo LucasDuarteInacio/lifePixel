@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Character } from '@/types/game';
+import { useHydration } from '@/hooks/useHydration';
 
 interface GameScreenProps {
   character: Character;
@@ -21,12 +22,7 @@ export default function GameScreen({
   onShowEvents, 
   onBackToStart 
 }: GameScreenProps) {
-  const [isClient, setIsClient] = useState(false);
-
-  // Ensure we're on the client side to prevent hydration mismatch with locale functions
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const isHydrated = useHydration();
 
   const latestEvent = character.events[character.events.length - 1];
 
@@ -38,7 +34,7 @@ export default function GameScreen({
   };
 
   const getMoneyDisplay = (money: number) => {
-    if (!isClient) return money >= 0 ? `R$ ${money}` : `-R$ ${Math.abs(money)}`;
+    if (!isHydrated) return money >= 0 ? `R$ ${money}` : `-R$ ${Math.abs(money)}`;
     
     if (money >= 0) {
       return `R$ ${money.toLocaleString()}`;
@@ -54,7 +50,7 @@ export default function GameScreen({
           <div className="flex items-center space-x-4">
             <h1 className="text-2xl font-bold text-white">VidaPixel</h1>
             <div className="text-white/80">
-              {character.name} - {character.age} anos
+              {character.firstName} {character.lastName} - {character.age} anos
             </div>
           </div>
           <div className="flex space-x-2">
@@ -90,7 +86,7 @@ export default function GameScreen({
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <div className="text-center">
                   <div className="text-white/60 text-sm">Nome</div>
-                  <div className="text-white font-medium">{character.name}</div>
+                  <div className="text-white font-medium">{character.firstName} {character.lastName}</div>
                 </div>
                 <div className="text-center">
                   <div className="text-white/60 text-sm">Idade</div>

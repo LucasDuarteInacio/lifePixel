@@ -1,13 +1,15 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { getRandomName, getRandomGender } from '@/data/names';
+import React, { useState } from 'react';
+
 import { getRandomCountry } from '@/data/countries';
 import { countries } from '@/data/countries';
+import { useHydration } from '@/hooks/useHydration';
 
 interface StartScreenProps {
   onCreateCharacter: (data?: {
-    name?: string;
+    firstName?: string;
+    lastName?: string;
     gender?: 'male' | 'female';
     country?: string;
   }) => void;
@@ -24,27 +26,24 @@ export default function StartScreen({
   hasExistingGame 
 }: StartScreenProps) {
   const [showCustomForm, setShowCustomForm] = useState(false);
-  const [customName, setCustomName] = useState('');
+  const [customFirstName, setCustomFirstName] = useState('');
+  const [customLastName, setCustomLastName] = useState('');
   const [customGender, setCustomGender] = useState<'male' | 'female'>('male');
   const [customCountry, setCustomCountry] = useState('');
-  const [isClient, setIsClient] = useState(false);
-
-  // Ensure we're on the client side to prevent hydration mismatch
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const isHydrated = useHydration();
 
   const handleRandomCharacter = () => {
-    if (!isClient) return;
+    if (!isHydrated) return;
     onCreateCharacter();
   };
 
   const handleCustomCharacter = () => {
-    if (!isClient) return;
+    if (!isHydrated) return;
     
-    if (customName.trim()) {
+    if (customFirstName.trim()) {
       onCreateCharacter({
-        name: customName.trim(),
+        firstName: customFirstName.trim(),
+        lastName: customLastName.trim() || 'Silva',
         gender: customGender,
         country: customCountry || getRandomCountry().name
       });
@@ -88,13 +87,26 @@ export default function StartScreen({
           <div className="mt-6 space-y-4 bg-white/5 rounded-lg p-4">
             <div>
               <label className="block text-white text-sm font-medium mb-2">
-                Nome
+                Primeiro Nome
               </label>
               <input
                 type="text"
-                value={customName}
-                onChange={(e) => setCustomName(e.target.value)}
-                placeholder="Digite o nome do personagem"
+                value={customFirstName}
+                onChange={(e) => setCustomFirstName(e.target.value)}
+                placeholder="Digite o primeiro nome"
+                className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-white text-sm font-medium mb-2">
+                Sobrenome
+              </label>
+              <input
+                type="text"
+                value={customLastName}
+                onChange={(e) => setCustomLastName(e.target.value)}
+                placeholder="Digite o sobrenome (opcional)"
                 className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -133,7 +145,7 @@ export default function StartScreen({
 
             <button
               onClick={handleCustomCharacter}
-              disabled={!customName.trim()}
+              disabled={!customFirstName.trim()}
               className="w-full bg-green-600 hover:bg-green-700 disabled:bg-gray-500 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors"
             >
               Criar Personagem

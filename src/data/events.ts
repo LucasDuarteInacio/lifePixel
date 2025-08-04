@@ -61,6 +61,42 @@ export const gameEvents: EventTemplate[] = [
     probability: 20,
     ageRange: { min: 3, max: 12 }
   },
+  {
+    id: 'family_support',
+    title: 'Apoio da família',
+    description: 'Sua família está sempre ao seu lado, te dando apoio e carinho.',
+    type: 'positive',
+    effects: { happiness: 8, health: 3 },
+    probability: 60,
+    ageRange: { min: 0, max: 18 }
+  },
+  {
+    id: 'family_conflict',
+    title: 'Conflito familiar',
+    description: 'Houve uma discussão em casa. As relações estão um pouco tensas.',
+    type: 'negative',
+    effects: { happiness: -5, popularity: -2 },
+    probability: 30,
+    ageRange: { min: 10, max: 25 }
+  },
+  {
+    id: 'sibling_birth',
+    title: 'Nascimento de irmão',
+    description: 'Você ganhou um novo irmão! A família cresceu.',
+    type: 'positive',
+    effects: { happiness: 4, popularity: 2 },
+    probability: 15,
+    ageRange: { min: 0, max: 15 }
+  },
+  {
+    id: 'family_trip',
+    title: 'Viagem em família',
+    description: 'Sua família fez uma viagem incrível! Momentos especiais juntos.',
+    type: 'positive',
+    effects: { happiness: 10, intelligence: 2 },
+    probability: 25,
+    ageRange: { min: 5, max: 20 }
+  },
 
   // Eventos da adolescência (13-17 anos)
   {

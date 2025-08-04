@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Character } from '@/types/game';
+import { useHydration } from '@/hooks/useHydration';
 
 interface EventsScreenProps {
   character: Character;
@@ -12,12 +13,7 @@ interface EventsScreenProps {
  * Tela de eventos com lista cronológica de todos os eventos da vida
  */
 export default function EventsScreen({ character, onBackToGame }: EventsScreenProps) {
-  const [isClient, setIsClient] = useState(false);
-
-  // Ensure we're on the client side to prevent hydration mismatch with locale functions
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const isHydrated = useHydration();
 
   const sortedEvents = [...character.events].sort((a, b) => a.age - b.age);
 
@@ -48,7 +44,7 @@ export default function EventsScreen({ character, onBackToGame }: EventsScreenPr
   };
 
   const formatDate = (date: Date) => {
-    if (!isClient) return date.toISOString().split('T')[0];
+    if (!isHydrated) return date.toISOString().split('T')[0];
     
     return date.toLocaleDateString('pt-BR', {
       day: '2-digit',
@@ -67,7 +63,7 @@ export default function EventsScreen({ character, onBackToGame }: EventsScreenPr
           <div className="flex items-center space-x-4">
             <h1 className="text-2xl font-bold text-white">Histórico de Eventos</h1>
             <div className="text-white/80">
-              {character.name} - {character.age} anos
+              {character.firstName} {character.lastName} - {character.age} anos
             </div>
           </div>
           <button
@@ -115,7 +111,7 @@ export default function EventsScreen({ character, onBackToGame }: EventsScreenPr
           
           {sortedEvents.length > 0 ? (
             <div className="space-y-4">
-              {sortedEvents.map((event, index) => (
+              {sortedEvents.map((event) => (
                 <div
                   key={event.id}
                   className={`p-4 rounded-lg border ${getEventTypeColor(event.type)}`}
@@ -151,7 +147,7 @@ export default function EventsScreen({ character, onBackToGame }: EventsScreenPr
                               <span className={`px-2 py-1 rounded text-xs ${
                                 event.effects.money > 0 ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'
                               }`}>
-                                Dinheiro {event.effects.money > 0 ? '+' : ''}R$ {isClient ? event.effects.money.toLocaleString() : event.effects.money}
+                                Dinheiro {event.effects.money > 0 ? '+' : ''}R$ {isHydrated ? event.effects.money.toLocaleString() : event.effects.money}
                               </span>
                             )}
                             {event.effects.intelligence && (

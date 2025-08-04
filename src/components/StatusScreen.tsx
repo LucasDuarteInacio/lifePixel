@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Character } from '@/types/game';
+import { useHydration } from '@/hooks/useHydration';
 
 interface StatusScreenProps {
   character: Character;
@@ -12,12 +13,7 @@ interface StatusScreenProps {
  * Tela de status detalhado do personagem
  */
 export default function StatusScreen({ character, onBackToGame }: StatusScreenProps) {
-  const [isClient, setIsClient] = useState(false);
-
-  // Ensure we're on the client side to prevent hydration mismatch with locale functions
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const isHydrated = useHydration();
 
   const getStatusColor = (value: number) => {
     if (value >= 80) return 'text-green-400';
@@ -27,7 +23,7 @@ export default function StatusScreen({ character, onBackToGame }: StatusScreenPr
   };
 
   const getMoneyDisplay = (money: number) => {
-    if (!isClient) return money >= 0 ? `R$ ${money}` : `-R$ ${Math.abs(money)}`;
+    if (!isHydrated) return money >= 0 ? `R$ ${money}` : `-R$ ${Math.abs(money)}`;
     
     if (money >= 0) {
       return `R$ ${money.toLocaleString()}`;
@@ -48,7 +44,7 @@ export default function StatusScreen({ character, onBackToGame }: StatusScreenPr
   };
 
   const getFormattedDate = (date: Date) => {
-    if (!isClient) return date.toISOString().split('T')[0];
+    if (!isHydrated) return date.toISOString().split('T')[0];
     return date.toLocaleDateString('pt-BR');
   };
 
@@ -60,7 +56,7 @@ export default function StatusScreen({ character, onBackToGame }: StatusScreenPr
           <div className="flex items-center space-x-4">
             <h1 className="text-2xl font-bold text-white">Status Detalhado</h1>
             <div className="text-white/80">
-              {character.name} - {character.age} anos
+              {character.firstName} {character.lastName} - {character.age} anos
             </div>
           </div>
           <button
@@ -80,7 +76,7 @@ export default function StatusScreen({ character, onBackToGame }: StatusScreenPr
             <div className="space-y-3">
               <div className="flex justify-between">
                 <span className="text-white/60">Nome:</span>
-                <span className="text-white font-medium">{character.name}</span>
+                <span className="text-white font-medium">{character.firstName} {character.lastName}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-white/60">Idade:</span>
@@ -212,30 +208,50 @@ export default function StatusScreen({ character, onBackToGame }: StatusScreenPr
 
           {/* Relacionamentos */}
           <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 lg:col-span-2">
-            <h2 className="text-xl font-semibold text-white mb-4">Relacionamentos</h2>
+            <h2 className="text-xl font-semibold text-white mb-4">Família e Relacionamentos</h2>
             {character.relationships.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {character.relationships.map((relationship) => (
-                  <div key={relationship.id} className="bg-white/5 rounded-lg p-3 border border-white/10">
-                    <div className="text-white font-medium">{relationship.name}</div>
-                    <div className="text-white/60 text-sm">
-                      {relationship.type === 'family' ? 'Família' :
-                       relationship.type === 'friend' ? 'Amigo' :
-                       relationship.type === 'romantic' ? 'Romântico' :
-                       relationship.type === 'colleague' ? 'Colega' : 'Outro'}
-                    </div>
-                    <div className="text-white/60 text-sm">
-                      Status: {relationship.status === 'good' ? 'Bom' :
-                               relationship.status === 'neutral' ? 'Neutro' : 'Ruim'}
-                    </div>
-                    <div className="text-white/60 text-sm">
-                      Idade: {relationship.age} anos
-                    </div>
-                    <div className="text-white/60 text-sm">
-                      {relationship.isAlive ? 'Vivo' : 'Falecido'}
-                    </div>
-                  </div>
-                ))}
+                                 {character.relationships.map((relationship) => {
+                   // Determinar o tipo específico de membro da família baseado na idade e gênero
+                   let familyRole = '';
+                   if (relationship.type === 'family') {
+                     const ageDiff = relationship.age - character.age;
+                     if (ageDiff >= 18 && ageDiff <= 50) {
+                       familyRole = relationship.gender === 'male' ? 'Pai' : 'Mãe';
+                     } else if (ageDiff >= -5 && ageDiff <= 15) {
+                       familyRole = relationship.gender === 'male' ? 'Irmão' : 'Irmã';
+                     } else if (ageDiff > 50) {
+                       familyRole = relationship.gender === 'male' ? 'Avô' : 'Avó';
+                     } else {
+                       familyRole = 'Familiar';
+                     }
+                   }
+
+                                     return (
+                     <div key={relationship.id} className="bg-white/5 rounded-lg p-3 border border-white/10">
+                       <div className="text-white font-medium">{relationship.name}</div>
+                       <div className="text-white/60 text-sm">
+                         {relationship.type === 'family' ? familyRole :
+                          relationship.type === 'friend' ? 'Amigo' :
+                          relationship.type === 'romantic' ? 'Romântico' :
+                          relationship.type === 'colleague' ? 'Colega' : 'Outro'}
+                       </div>
+                       <div className="text-white/60 text-sm">
+                         Gênero: {relationship.gender === 'male' ? 'Masculino' : 'Feminino'}
+                       </div>
+                       <div className="text-white/60 text-sm">
+                         Status: {relationship.status === 'good' ? 'Bom' :
+                                  relationship.status === 'neutral' ? 'Neutro' : 'Ruim'}
+                       </div>
+                       <div className="text-white/60 text-sm">
+                         Idade: {relationship.age} anos
+                       </div>
+                       <div className="text-white/60 text-sm">
+                         {relationship.isAlive ? 'Vivo' : 'Falecido'}
+                       </div>
+                     </div>
+                   );
+                })}
               </div>
             ) : (
               <div className="text-white/60 text-center py-8">

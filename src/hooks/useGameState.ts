@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { GameState, Character } from '@/types/game';
-import { getRandomName, getRandomGender } from '@/data/names';
+import { getRandomName, getRandomGender, generateFamily } from '@/data/names';
 import { getRandomCountry } from '@/data/countries';
 import { generateRandomEvent } from '@/data/events';
 
@@ -69,7 +69,8 @@ export function useGameState() {
    * Criar um novo personagem
    */
   const createCharacter = (customData?: {
-    name?: string;
+    firstName?: string;
+    lastName?: string;
     gender?: 'male' | 'female';
     country?: string;
   }) => {
@@ -77,12 +78,15 @@ export function useGameState() {
     if (!isClient) return;
 
     const gender = customData?.gender || getRandomGender();
-    const name = customData?.name || getRandomName(gender);
+    const nameData = customData?.firstName ? 
+      { firstName: customData.firstName, lastName: customData.lastName || 'Silva' } :
+      getRandomName(gender);
     const country = customData?.country || getRandomCountry().name;
 
     const character: Character = {
-      id: `char_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      name,
+      id: `char_${isClient ? Date.now() : 0}_${isClient ? Math.random().toString(36).substr(2, 9) : 'temp'}`,
+      firstName: nameData.firstName,
+      lastName: nameData.lastName,
       gender,
       country,
       age: 0,
@@ -95,7 +99,7 @@ export function useGameState() {
         looks: 50,
         popularity: 30
       },
-      relationships: [],
+      relationships: generateFamily(0, nameData.lastName), // Gerar família inicial
       career: {
         job: null,
         salary: 0,
@@ -108,8 +112,8 @@ export function useGameState() {
         graduationYear: null
       },
       events: [],
-      createdAt: new Date(),
-      lastSaved: new Date()
+      createdAt: isClient ? new Date() : new Date(0),
+      lastSaved: isClient ? new Date() : new Date(0)
     };
 
     setGameState(prev => ({
@@ -133,13 +137,13 @@ export function useGameState() {
     const event = generateRandomEvent(character.age, character);
     if (event) {
       const gameEvent = {
-        id: `${event.id}_${character.age}_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`,
+        id: `${event.id}_${character.age}_${isClient ? Date.now() : 0}_${isClient ? Math.random().toString(36).substr(2, 5) : 'temp'}`,
         title: event.title,
         description: event.description,
         age: character.age,
         type: event.type,
         effects: event.effects,
-        timestamp: new Date()
+        timestamp: isClient ? new Date() : new Date(0)
       };
 
       character.events.push(gameEvent);

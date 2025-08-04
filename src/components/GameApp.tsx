@@ -1,46 +1,29 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useGameState } from '@/hooks/useGameState';
+import { useHydration } from '@/hooks/useHydration';
 import StartScreen from './StartScreen';
 import GameScreen from './GameScreen';
 import StatusScreen from './StatusScreen';
 import EventsScreen from './EventsScreen';
+import LoadingScreen from './LoadingScreen';
 
 /**
  * Componente principal do jogo que gerencia todas as telas
  */
 export default function GameApp() {
   const { gameState, createCharacter, advanceYear, setScreen, resetGame } = useGameState();
-  const [isClient, setIsClient] = useState(false);
+  const isHydrated = useHydration();
 
-  // Ensure we're on the client side to prevent hydration mismatch
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  // Don't render anything until we're on the client
-  if (!isClient) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-white mx-auto mb-4"></div>
-          <div className="text-white text-xl">Carregando VidaPixel...</div>
-        </div>
-      </div>
-    );
+  // Don't render anything until we're hydrated
+  if (!isHydrated) {
+    return <LoadingScreen />;
   }
 
   // Loading screen
   if (gameState.isLoading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-white mx-auto mb-4"></div>
-          <div className="text-white text-xl">Carregando VidaPixel...</div>
-        </div>
-      </div>
-    );
+    return <LoadingScreen />;
   }
 
   // Error screen

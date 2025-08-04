@@ -4,7 +4,8 @@
 
 export interface Character {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   gender: 'male' | 'female';
   country: string;
   age: number;
@@ -33,6 +34,7 @@ export interface Relationship {
   type: 'family' | 'friend' | 'romantic' | 'colleague';
   status: 'good' | 'neutral' | 'bad';
   age: number;
+  gender: 'male' | 'female';
   isAlive: boolean;
 }
 
