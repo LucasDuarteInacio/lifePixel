@@ -129,15 +129,61 @@ export function useGameState() {
   const advanceYear = () => {
     if (!gameState.character || !gameState.character.isAlive || !isClient) return;
 
-    const character = { ...gameState.character };
-    character.age += 1;
-    character.lastSaved = new Date();
+    // Create a deep copy of the character to ensure proper state immutability
+    const character: Character = {
+      ...gameState.character,
+      age: gameState.character.age + 1,
+      lastSaved: new Date(),
+      stats: { ...gameState.character.stats },
+      career: { ...gameState.character.career },
+      education: { ...gameState.character.education },
+      events: [...gameState.character.events],
+      relationships: gameState.character.relationships.map(relationship => {
+        const updatedRelationship: Relationship = {
+          ...relationship,
+          age: relationship.age + 1
+        };
+        
+        // Calculate death probability based on age (only if still alive)
+        if (updatedRelationship.isAlive) {
+          const deathProbability = calculateDeathProbability(updatedRelationship.age);
+          
+          // Roll for death
+          if (Math.random() < deathProbability) {
+            updatedRelationship.isAlive = false;
+            
+            // Add a death event to character's history
+            const deathEvent = {
+              id: `relationship_death_${updatedRelationship.id}_${character.age}_${Date.now()}`,
+              title: `${updatedRelationship.name} faleceu`,
+              description: `Seu ${getRelationshipTypeInPortuguese(updatedRelationship.type)} ${updatedRelationship.name} faleceu aos ${updatedRelationship.age} anos.`,
+              age: character.age,
+              type: 'negative' as const,
+              effects: {
+                happiness: -10,
+                health: -5
+              },
+              timestamp: new Date()
+            };
+            
+            character.events.push(deathEvent);
+            
+            // Apply grief effects
+            applyEventEffects(character, deathEvent.effects);
+          }
+        }
+        
+        return updatedRelationship;
+      })
+    };
+
 
     // Verificar se deve gerar um evento especial (10% de chance)
     const shouldGenerateSpecialEvent = Math.random() < 0.1;
     if (shouldGenerateSpecialEvent) {
       const specialEvent = generateRandomSpecialEvent(character.age, character);
       if (specialEvent) {
+        // Save the character state with aged relationships before showing special event
         setGameState(prev => ({
           ...prev,
           character,
@@ -202,12 +248,51 @@ export function useGameState() {
   };
 
   /**
+   * Calculate death probability based on age
+   */
+  const calculateDeathProbability = (age: number): number => {
+    if (age < 50) return 0.001; // 0.1% chance for young people
+    if (age < 60) return 0.005; // 0.5% chance for middle-aged
+    if (age < 70) return 0.015; // 1.5% chance for older adults
+    if (age < 80) return 0.035; // 3.5% chance for elderly
+    if (age < 90) return 0.070; // 7% chance for very elderly
+    return 0.150; // 15% chance for very old people (90+)
+  };
+
+  /**
+   * Get relationship type name in Portuguese
+   */
+  const getRelationshipTypeInPortuguese = (type: string): string => {
+    switch (type) {
+      case 'father': return 'pai';
+      case 'mother': return 'mãe';
+      case 'brother': return 'irmão';
+      case 'sister': return 'irmã';
+      case 'son': return 'filho';
+      case 'daughter': return 'filha';
+      case 'family': return 'familiar';
+      case 'friend': return 'amigo(a)';
+      case 'romantic': return 'parceiro(a)';
+      case 'colleague': return 'colega';
+      default: return 'conhecido(a)';
+    }
+  };
+
+  /**
    * Processar escolha de evento especial
    */
   const handleSpecialEventChoice = (choice: SpecialEventChoice) => {
     if (!gameState.character || !gameState.activeSpecialEvent) return;
 
-    const character = { ...gameState.character };
+    // Create a deep copy of the character to ensure proper state immutability
+    const character: Character = {
+      ...gameState.character,
+      stats: { ...gameState.character.stats },
+      career: { ...gameState.character.career },
+      education: { ...gameState.character.education },
+      events: [...gameState.character.events],
+      relationships: gameState.character.relationships.map(rel => ({ ...rel }))
+    };
     let actualEffects = choice.effects;
     let actualRelationshipAction = choice.relationshipAction;
     let outcomeMessage = `${gameState.activeSpecialEvent.description} - Escolha: ${choice.text}`;

@@ -245,7 +245,7 @@ export default function StatusScreen({ character, onBackToGame }: StatusScreenPr
                        <div className="text-white/60 text-sm">
                          Idade: {relationship.age} anos
                        </div>
-                       <div className="text-white/60 text-sm">
+                       <div className={`text-sm ${relationship.isAlive ? 'text-green-400' : 'text-red-400'}`}>
                          {relationship.isAlive ? 'Vivo' : 'Falecido'}
                        </div>
                      </div>
