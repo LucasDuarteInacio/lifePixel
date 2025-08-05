@@ -4,12 +4,13 @@ import StartScreen from './StartScreen';
 import GameScreen from './GameScreen';
 import StatusScreen from './StatusScreen';
 import LoadingScreen from './LoadingScreen';
+import SpecialEventModal from './SpecialEventModal';
 
 /**
  * Componente principal do jogo que gerencia todas as telas
  */
 export default function GameApp() {
-  const { gameState, createCharacter, advanceYear, setScreen, resetGame } = useGameState();
+  const { gameState, createCharacter, advanceYear, setScreen, resetGame, handleSpecialEventChoice, cancelSpecialEvent } = useGameState();
   const isHydrated = useHydration();
 
   // Don't render anything until we're hydrated
@@ -40,47 +41,64 @@ export default function GameApp() {
     );
   }
 
-  // Renderizar tela baseada no estado atual
-  switch (gameState.currentScreen) {
-    case 'start':
-      return (
-        <StartScreen
-          onCreateCharacter={createCharacter}
-          onContinueGame={() => setScreen('game')}
-          hasExistingGame={!!gameState.character}
-          character={gameState.character}
-        />
-      );
+  // Render main content with modal overlay
+  const renderMainContent = () => {
+    switch (gameState.currentScreen) {
+      case 'start':
+        return (
+          <StartScreen
+            onCreateCharacter={createCharacter}
+            onContinueGame={() => setScreen('game')}
+            hasExistingGame={!!gameState.character}
+            character={gameState.character}
+          />
+        );
 
-    case 'game':
-      if (!gameState.character) {
+      case 'game':
+        if (!gameState.character) {
+          setScreen('start');
+          return null;
+        }
+        return (
+          <GameScreen
+            character={gameState.character}
+            onAdvanceYear={advanceYear}
+            onShowStatus={() => setScreen('status')}
+            onBackToStart={() => setScreen('start')}
+          />
+        );
+
+      case 'status':
+        if (!gameState.character) {
+          setScreen('start');
+          return null;
+        }
+        return (
+          <StatusScreen
+            character={gameState.character}
+            onBackToGame={() => setScreen('game')}
+          />
+        );
+
+      default:
         setScreen('start');
         return null;
-      }
-      return (
-        <GameScreen
-          character={gameState.character}
-          onAdvanceYear={advanceYear}
-          onShowStatus={() => setScreen('status')}
-          onBackToStart={() => setScreen('start')}
+    }
+  };
+
+  return (
+    <>
+      {/* Main screen content */}
+      {renderMainContent()}
+      
+      {/* Special Event Modal */}
+      {gameState.activeSpecialEvent && (
+        <SpecialEventModal
+          event={gameState.activeSpecialEvent}
+          onChoice={handleSpecialEventChoice}
+          onCancel={cancelSpecialEvent}
         />
-      );
-
-    case 'status':
-      if (!gameState.character) {
-        setScreen('start');
-        return null;
-      }
-      return (
-        <StatusScreen
-          character={gameState.character}
-          onBackToGame={() => setScreen('game')}
-        />
-      );
-
-
-    default:
-      setScreen('start');
-      return null;
-  }
-} 
+      )}
+    </>
+  );
+}

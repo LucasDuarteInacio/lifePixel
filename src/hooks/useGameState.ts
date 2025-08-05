@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { GameState, Character } from '@/types/game';
+import { GameState, Character, SpecialEvent, SpecialEventChoice, Relationship } from '@/types/game';
 import { getRandomName, getRandomGender, generateFamily } from '@/data/names';
 import { getRandomCountry } from '@/data/countries';
 import { generateRandomEvent } from '@/data/events';
+import { generateRandomSpecialEvent } from '@/data/specialEvents';
 
 const STORAGE_KEY = 'lifePixel_game_state';
 
@@ -15,7 +16,8 @@ export function useGameState() {
     character: null,
     currentScreen: 'start',
     isLoading: true,
-    error: null
+    error: null,
+    activeSpecialEvent: null
   });
 
   const [isClient, setIsClient] = useState(false);
@@ -131,6 +133,20 @@ export function useGameState() {
     character.age += 1;
     character.lastSaved = new Date();
 
+    // Verificar se deve gerar um evento especial (10% de chance)
+    const shouldGenerateSpecialEvent = Math.random() < 0.1;
+    if (shouldGenerateSpecialEvent) {
+      const specialEvent = generateRandomSpecialEvent(character.age, character);
+      if (specialEvent) {
+        setGameState(prev => ({
+          ...prev,
+          character,
+          activeSpecialEvent: specialEvent
+        }));
+        return; // Não processar evento normal se há evento especial
+      }
+    }
+
     // Gerar evento aleatório para este ano
     const event = generateRandomEvent(character.age, character);
     if (event) {
@@ -147,24 +163,7 @@ export function useGameState() {
       character.events.push(gameEvent);
 
       // Aplicar efeitos do evento
-      if (event.effects.happiness) {
-        character.stats.happiness = Math.max(0, Math.min(100, character.stats.happiness + event.effects.happiness));
-      }
-      if (event.effects.health) {
-        character.stats.health = Math.max(0, Math.min(100, character.stats.health + event.effects.health));
-      }
-      if (event.effects.money) {
-        character.stats.money += event.effects.money;
-      }
-      if (event.effects.intelligence) {
-        character.stats.intelligence = Math.max(0, Math.min(100, character.stats.intelligence + event.effects.intelligence));
-      }
-      if (event.effects.looks) {
-        character.stats.looks = Math.max(0, Math.min(100, character.stats.looks + event.effects.looks));
-      }
-      if (event.effects.popularity) {
-        character.stats.popularity = Math.max(0, Math.min(100, character.stats.popularity + event.effects.popularity));
-      }
+      applyEventEffects(character, event.effects);
 
       // Verificar se o personagem morreu
       if (event.id === 'death' || character.stats.health <= 0) {
@@ -175,6 +174,116 @@ export function useGameState() {
     setGameState(prev => ({
       ...prev,
       character
+    }));
+  };
+
+  /**
+   * Aplicar efeitos de um evento aos stats do personagem
+   */
+  const applyEventEffects = (character: Character, effects: any) => {
+    if (effects.happiness) {
+      character.stats.happiness = Math.max(0, Math.min(100, character.stats.happiness + effects.happiness));
+    }
+    if (effects.health) {
+      character.stats.health = Math.max(0, Math.min(100, character.stats.health + effects.health));
+    }
+    if (effects.money) {
+      character.stats.money += effects.money;
+    }
+    if (effects.intelligence) {
+      character.stats.intelligence = Math.max(0, Math.min(100, character.stats.intelligence + effects.intelligence));
+    }
+    if (effects.looks) {
+      character.stats.looks = Math.max(0, Math.min(100, character.stats.looks + effects.looks));
+    }
+    if (effects.popularity) {
+      character.stats.popularity = Math.max(0, Math.min(100, character.stats.popularity + effects.popularity));
+    }
+  };
+
+  /**
+   * Processar escolha de evento especial
+   */
+  const handleSpecialEventChoice = (choice: SpecialEventChoice) => {
+    if (!gameState.character || !gameState.activeSpecialEvent) return;
+
+    const character = { ...gameState.character };
+    let actualEffects = choice.effects;
+    let actualRelationshipAction = choice.relationshipAction;
+    let outcomeMessage = `${gameState.activeSpecialEvent.description} - Escolha: ${choice.text}`;
+    let eventType = gameState.activeSpecialEvent.type;
+
+    // Verificar se há risco de resultado negativo
+    if (choice.riskOutcome && isClient) {
+      const riskRoll = Math.random() * 100;
+      if (riskRoll < choice.riskOutcome.probability) {
+        // Resultado negativo ocorreu
+        actualEffects = choice.riskOutcome.effects;
+        actualRelationshipAction = choice.riskOutcome.relationshipAction || choice.relationshipAction;
+        outcomeMessage = choice.riskOutcome.message;
+        eventType = 'negative'; // Forçar tipo negativo quando dá errado
+        
+        // Personalizar mensagem com nome do evento
+        const eventName = gameState.activeSpecialEvent.title.split(' ')[0]; // Pegar primeiro nome
+        outcomeMessage = outcomeMessage.replace('{name}', eventName);
+      }
+    }
+    
+    // Aplicar efeitos (normais ou de risco)
+    applyEventEffects(character, actualEffects);
+
+    // Processar ação de relacionamento se existir
+    if (actualRelationshipAction) {
+      const action = actualRelationshipAction;
+      
+      if (action.type === 'add' && action.relationship) {
+        // Adicionar novo relacionamento
+        const newRelationship: Relationship = {
+          id: `rel_${isClient ? Date.now() : 0}_${isClient ? Math.random().toString(36).substr(2, 9) : 'temp'}`,
+          ...action.relationship
+        };
+        character.relationships.push(newRelationship);
+      } else if (action.type === 'remove' && action.relationshipId) {
+        // Remover relacionamento
+        character.relationships = character.relationships.filter(rel => rel.id !== action.relationshipId);
+      } else if (action.type === 'modify' && action.relationshipId && action.statusChange) {
+        // Modificar relacionamento existente
+        const relationshipIndex = character.relationships.findIndex(rel => rel.id === action.relationshipId);
+        if (relationshipIndex !== -1) {
+          character.relationships[relationshipIndex].status = action.statusChange;
+        }
+      }
+    }
+
+    // Adicionar evento ao histórico
+    const gameEvent = {
+      id: `special_${gameState.activeSpecialEvent.id}_${character.age}_${isClient ? Date.now() : 0}`,
+      title: gameState.activeSpecialEvent.title,
+      description: outcomeMessage,
+      age: character.age,
+      type: eventType,
+      effects: actualEffects,
+      timestamp: isClient ? new Date() : new Date(0)
+    };
+
+    character.events.push(gameEvent);
+    character.lastSaved = new Date();
+
+    // Limpar evento especial ativo
+    setGameState(prev => ({
+      ...prev,
+      character,
+      activeSpecialEvent: null
+    }));
+  };
+
+  /**
+   * Cancelar evento especial (fechar modal sem escolher)
+   */
+  const cancelSpecialEvent = () => {
+    setGameState(prev => ({
+      ...prev,
+      activeSpecialEvent: null
     }));
   };
 
@@ -197,7 +306,8 @@ export function useGameState() {
       character: null,
       currentScreen: 'start',
       isLoading: false,
-      error: null
+      error: null,
+      activeSpecialEvent: null
     });
   };
 
@@ -206,6 +316,8 @@ export function useGameState() {
     createCharacter,
     advanceYear,
     setScreen,
-    resetGame
+    resetGame,
+    handleSpecialEventChoice,
+    cancelSpecialEvent
   };
 } 

@@ -31,7 +31,7 @@ export interface CharacterStats {
 export interface Relationship {
   id: string;
   name: string;
-  type: 'family' | 'friend' | 'romantic' | 'colleague';
+  type: 'father' | 'mother' | 'brother' | 'sister' | 'son' | 'daughter' | 'family' | 'friend' | 'romantic' | 'colleague';
   status: 'good' | 'neutral' | 'bad';
   age: number;
   gender: 'male' | 'female';
@@ -97,11 +97,49 @@ export interface EventTemplate {
   };
 }
 
+export interface SpecialEventChoice {
+  id: string;
+  text: string;
+  effects: EventEffects;
+  relationshipAction?: {
+    type: 'add' | 'remove' | 'modify';
+    relationship?: Omit<Relationship, 'id'>;
+    relationshipId?: string;
+    statusChange?: 'good' | 'neutral' | 'bad';
+  };
+  riskOutcome?: {
+    probability: number; // 0-100, chance of negative outcome
+    message: string; // Message to display when negative outcome occurs
+    effects: EventEffects; // Alternative effects when things go wrong
+    relationshipAction?: {
+      type: 'add' | 'remove' | 'modify';
+      relationship?: Omit<Relationship, 'id'>;
+      relationshipId?: string;
+      statusChange?: 'good' | 'neutral' | 'bad';
+    };
+  };
+}
+
+export interface SpecialEvent {
+  id: string;
+  title: string;
+  description: string;
+  type: 'positive' | 'negative' | 'neutral';
+  choices: SpecialEventChoice[];
+  requirements?: EventRequirements;
+  probability: number;
+  ageRange?: {
+    min: number;
+    max: number;
+  };
+}
+
 export interface GameState {
   character: Character | null;
   currentScreen: 'start' | 'game' | 'status' | 'events';
   isLoading: boolean;
   error: string | null;
+  activeSpecialEvent: SpecialEvent | null;
 }
 
 export interface Country {

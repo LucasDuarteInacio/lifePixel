@@ -56,6 +56,7 @@ export function generateFamilyMember(
   let name: string;
   let age: number;
   let gender: 'male' | 'female';
+  let relationshipType: 'father' | 'mother' | 'brother' | 'sister';
   
   switch (type) {
     case 'father':
@@ -64,6 +65,7 @@ export function generateFamilyMember(
       name = `${fatherName.firstName} ${characterSurname}`;
       // Pai tem entre 20 e 50 anos a mais que o personagem
       age = characterAge + 20 + Math.floor(Math.random() * 30);
+      relationshipType = 'father';
       break;
     case 'mother':
       gender = 'female';
@@ -71,6 +73,7 @@ export function generateFamilyMember(
       name = `${motherName.firstName} ${characterSurname}`;
       // Mãe tem entre 18 e 45 anos a mais que o personagem
       age = characterAge + 18 + Math.floor(Math.random() * 27);
+      relationshipType = 'mother';
       break;
     case 'sibling':
       gender = getRandomGender();
@@ -78,13 +81,14 @@ export function generateFamilyMember(
       name = `${siblingName.firstName} ${characterSurname}`;
       // Irmão tem entre -5 e +10 anos de diferença
       age = Math.max(0, characterAge - 5 + Math.floor(Math.random() * 15));
+      relationshipType = gender === 'male' ? 'brother' : 'sister';
       break;
   }
   
   return {
     id,
     name,
-    type: 'family',
+    type: relationshipType,
     status: 'good',
     age,
     gender,

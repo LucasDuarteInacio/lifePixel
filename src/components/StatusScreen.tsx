@@ -212,30 +212,29 @@ export default function StatusScreen({ character, onBackToGame }: StatusScreenPr
             {character.relationships.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                  {character.relationships.map((relationship) => {
-                   // Determinar o tipo específico de membro da família baseado na idade e gênero
-                   let familyRole = '';
-                   if (relationship.type === 'family') {
-                     const ageDiff = relationship.age - character.age;
-                     if (ageDiff >= 18 && ageDiff <= 50) {
-                       familyRole = relationship.gender === 'male' ? 'Pai' : 'Mãe';
-                     } else if (ageDiff >= -5 && ageDiff <= 15) {
-                       familyRole = relationship.gender === 'male' ? 'Irmão' : 'Irmã';
-                     } else if (ageDiff > 50) {
-                       familyRole = relationship.gender === 'male' ? 'Avô' : 'Avó';
-                     } else {
-                       familyRole = 'Familiar';
-                     }
-                   }
-
+                                   // Função para obter o nome do tipo de relacionamento em português
+                                   const getRelationshipTypeName = (type: string) => {
+                                     switch (type) {
+                                       case 'father': return 'Pai';
+                                       case 'mother': return 'Mãe';
+                                       case 'brother': return 'Irmão';
+                                       case 'sister': return 'Irmã';
+                                       case 'son': return 'Filho';
+                                       case 'daughter': return 'Filha';
+                                       case 'family': return 'Familiar';
+                                       case 'friend': return 'Amigo';
+                                       case 'romantic': return 'Romântico';
+                                       case 'colleague': return 'Colega';
+                                       default: return 'Outro';
+                                     }
+                                   };
+                
                                      return (
-                     <div key={relationship.id} className="bg-white/5 rounded-lg p-3 border border-white/10">
-                       <div className="text-white font-medium">{relationship.name}</div>
-                       <div className="text-white/60 text-sm">
-                         {relationship.type === 'family' ? familyRole :
-                          relationship.type === 'friend' ? 'Amigo' :
-                          relationship.type === 'romantic' ? 'Romântico' :
-                          relationship.type === 'colleague' ? 'Colega' : 'Outro'}
-                       </div>
+                                     <div key={relationship.id} className="bg-white/5 rounded-lg p-3 border border-white/10">
+                                       <div className="text-white font-medium">{relationship.name}</div>
+                                       <div className="text-white/60 text-sm">
+                                         {getRelationshipTypeName(relationship.type)}
+                                       </div>
                        <div className="text-white/60 text-sm">
                          Gênero: {relationship.gender === 'male' ? 'Masculino' : 'Feminino'}
                        </div>
