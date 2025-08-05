@@ -4,6 +4,7 @@ import { getRandomName, getRandomGender, generateFamily } from '@/data/names';
 import { getRandomCountry } from '@/data/countries';
 import { generateRandomEvent } from '@/data/events';
 import { generateRandomSpecialEvent } from '@/data/specialEvents';
+import { getDeathProbabilityByAge, getSpecialEventChance } from '@/data/probabilities';
 
 const STORAGE_KEY = 'lifePixel_game_state';
 
@@ -129,57 +130,68 @@ export function useGameState() {
   const advanceYear = () => {
     if (!gameState.character || !gameState.character.isAlive || !isClient) return;
 
+    const currentCharacter = gameState.character;
+    const newAge = currentCharacter.age + 1;
+    
+    // Process relationships first to avoid circular reference
+    const updatedRelationships = currentCharacter.relationships.map(relationship => {
+      const updatedRelationship: Relationship = {
+        ...relationship,
+        // Only age living people
+        age: relationship.isAlive ? relationship.age + 1 : relationship.age
+      };
+      
+      return updatedRelationship;
+    });
+
     // Create a deep copy of the character to ensure proper state immutability
     const character: Character = {
-      ...gameState.character,
-      age: gameState.character.age + 1,
+      ...currentCharacter,
+      age: newAge,
       lastSaved: new Date(),
-      stats: { ...gameState.character.stats },
-      career: { ...gameState.character.career },
-      education: { ...gameState.character.education },
-      events: [...gameState.character.events],
-      relationships: gameState.character.relationships.map(relationship => {
-        const updatedRelationship: Relationship = {
-          ...relationship,
-          age: relationship.age + 1
-        };
-        
-        // Calculate death probability based on age (only if still alive)
-        if (updatedRelationship.isAlive) {
-          const deathProbability = calculateDeathProbability(updatedRelationship.age);
-          
-          // Roll for death
-          if (Math.random() < deathProbability) {
-            updatedRelationship.isAlive = false;
-            
-            // Add a death event to character's history
-            const deathEvent = {
-              id: `relationship_death_${updatedRelationship.id}_${character.age}_${Date.now()}`,
-              title: `${updatedRelationship.name} faleceu`,
-              description: `Seu ${getRelationshipTypeInPortuguese(updatedRelationship.type)} ${updatedRelationship.name} faleceu aos ${updatedRelationship.age} anos.`,
-              age: character.age,
-              type: 'negative' as const,
-              effects: {
-                happiness: -10,
-                health: -5
-              },
-              timestamp: new Date()
-            };
-            
-            character.events.push(deathEvent);
-            
-            // Apply grief effects
-            applyEventEffects(character, deathEvent.effects);
-          }
-        }
-        
-        return updatedRelationship;
-      })
+      stats: { ...currentCharacter.stats },
+      career: { ...currentCharacter.career },
+      education: { ...currentCharacter.education },
+      events: [...currentCharacter.events],
+      relationships: updatedRelationships
     };
 
+    // Now process death checks for relationships
+    character.relationships.forEach(relationship => {
+      // Calculate death probability based on age (only if still alive)
+      if (relationship.isAlive) {
+        const deathProbability = getDeathProbabilityByAge(relationship.age);
+        
+        // Roll for death
+        if (Math.random() < deathProbability) {
+          relationship.isAlive = false;
+          
+          // Add a death event to character's history
+          const deathEvent = {
+            id: `relationship_death_${relationship.id}_${character.age}_${Date.now()}`,
+            title: `${relationship.name} faleceu`,
+            description: `Seu ${getRelationshipTypeInPortuguese(relationship.type)} ${relationship.name} faleceu aos ${relationship.age} anos.`,
+            age: character.age,
+            type: 'negative' as const,
+            effects: {
+              happiness: -10,
+              health: -5
+            },
+            timestamp: new Date()
+          };
+          
+          console.log(deathEvent)
+          character.events.push(deathEvent);
+          
+          // Apply grief effects
+          applyEventEffects(character, deathEvent.effects);
+        }
+      }
+    });
 
-    // Verificar se deve gerar um evento especial (10% de chance)
-    const shouldGenerateSpecialEvent = Math.random() < 0.1;
+
+    // Verificar se deve gerar um evento especial
+    const shouldGenerateSpecialEvent = Math.random() < getSpecialEventChance();
     if (shouldGenerateSpecialEvent) {
       const specialEvent = generateRandomSpecialEvent(character.age, character);
       if (specialEvent) {
@@ -247,17 +259,6 @@ export function useGameState() {
     }
   };
 
-  /**
-   * Calculate death probability based on age
-   */
-  const calculateDeathProbability = (age: number): number => {
-    if (age < 50) return 0.001; // 0.1% chance for young people
-    if (age < 60) return 0.005; // 0.5% chance for middle-aged
-    if (age < 70) return 0.015; // 1.5% chance for older adults
-    if (age < 80) return 0.035; // 3.5% chance for elderly
-    if (age < 90) return 0.070; // 7% chance for very elderly
-    return 0.150; // 15% chance for very old people (90+)
-  };
 
   /**
    * Get relationship type name in Portuguese

@@ -1,5 +1,6 @@
 import { SpecialEvent } from '@/types/game';
 import { getRandomName, getRandomGender } from './names';
+import { PROBABILITIES } from './probabilities';
 
 /**
  * Eventos especiais interativos que requerem escolha do jogador
@@ -41,7 +42,7 @@ export const specialEvents: SpecialEvent[] = [
         }
       }
     ],
-    probability: 25,
+    probability: PROBABILITIES.specialEvents.newFriendSchool,
     ageRange: { min: 6, max: 17 }
   },
   {
@@ -81,7 +82,7 @@ export const specialEvents: SpecialEvent[] = [
     requirements: {
       isEmployed: true
     },
-    probability: 20,
+    probability: PROBABILITIES.specialEvents.newFriendWork,
     ageRange: { min: 18, max: 65 }
   },
   {
@@ -117,7 +118,7 @@ export const specialEvents: SpecialEvent[] = [
         }
       }
     ],
-    probability: 15,
+    probability: PROBABILITIES.specialEvents.neighborFriend,
     ageRange: { min: 18, max: 80 }
   },
   // Eventos românticos
@@ -146,7 +147,7 @@ export const specialEvents: SpecialEvent[] = [
           }
         },
         riskOutcome: {
-          probability: 15,
+          probability: PROBABILITIES.riskOutcomes.romanticInterestBetrayal,
           message: 'Você começou a namorar {name}, mas descobriu que ele(a) já estava em outro relacionamento. Isso causou muito drama e você se sentiu traído(a).',
           effects: {
             happiness: -15,
@@ -173,7 +174,7 @@ export const specialEvents: SpecialEvent[] = [
           }
         },
         riskOutcome: {
-          probability: 30,
+          probability: PROBABILITIES.riskOutcomes.romanticInterestRejectionBacklash,
           message: '{name} não aceitou bem ser rejeitado(a) romanticamente e começou a espalhar rumores sobre você.',
           effects: {
             happiness: -8,
@@ -200,7 +201,7 @@ export const specialEvents: SpecialEvent[] = [
         }
       }
     ],
-    probability: 18,
+    probability: PROBABILITIES.specialEvents.romanticInterest,
     ageRange: { min: 16, max: 50 }
   },
   // Eventos de conflito
@@ -219,7 +220,7 @@ export const specialEvents: SpecialEvent[] = [
           health: -5
         },
         riskOutcome: {
-          probability: 35,
+          probability: PROBABILITIES.riskOutcomes.bullyStandUpBackfire,
           message: 'Você tentou enfrentar {name}, mas ele era mais forte que você esperava. Você apanhou na frente de todos e ficou machucado.',
           effects: {
             happiness: -10,
@@ -237,7 +238,7 @@ export const specialEvents: SpecialEvent[] = [
           health: 2
         },
         riskOutcome: {
-          probability: 25,
+          probability: PROBABILITIES.riskOutcomes.bullyAvoidanceBackfire,
           message: 'Você tentou evitar {name}, mas ele te seguiu e te humilhou ainda mais na frente de outros alunos.',
           effects: {
             happiness: -15,
@@ -255,7 +256,7 @@ export const specialEvents: SpecialEvent[] = [
           intelligence: 3
         },
         riskOutcome: {
-          probability: 20,
+          probability: PROBABILITIES.riskOutcomes.bullySeekHelpBackfire,
           message: 'Você procurou ajuda, mas o adulto não levou a sério. {name} descobriu que você "dedurou" e agora está ainda mais irritado.',
           effects: {
             happiness: -8,
@@ -265,7 +266,7 @@ export const specialEvents: SpecialEvent[] = [
         }
       }
     ],
-    probability: 12,
+    probability: PROBABILITIES.specialEvents.bullyConfrontation,
     ageRange: { min: 10, max: 17 }
   },
   // Eventos de oportunidade
@@ -295,7 +296,7 @@ export const specialEvents: SpecialEvent[] = [
           }
         },
         riskOutcome: {
-          probability: 20,
+          probability: PROBABILITIES.riskOutcomes.mentorDubiousPractices,
           message: 'Você aceitou {name} como mentor(a), mas descobriu que ele(a) tinha métodos questionáveis e tentou te envolver em práticas duvidosas no trabalho.',
           effects: {
             happiness: -12,
@@ -328,7 +329,7 @@ export const specialEvents: SpecialEvent[] = [
       isEmployed: true,
       minAge: 22
     },
-    probability: 10,
+    probability: PROBABILITIES.specialEvents.mentorOpportunity,
     ageRange: { min: 22, max: 45 }
   },
   // Eventos familiares
@@ -365,7 +366,7 @@ export const specialEvents: SpecialEvent[] = [
         }
       }
     ],
-    probability: 8,
+    probability: PROBABILITIES.specialEvents.distantRelative,
     ageRange: { min: 18, max: 70 }
   }
 ];

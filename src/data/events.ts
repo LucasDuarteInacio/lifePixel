@@ -1,4 +1,5 @@
 import { EventTemplate } from '@/types/game';
+import { PROBABILITIES } from './probabilities';
 
 /**
  * Biblioteca de eventos do jogo VidaPixel
@@ -13,7 +14,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Bem-vindo ao mundo! Sua jornada começa agora.',
     type: 'neutral',
     effects: {},
-    probability: 100,
+    probability: PROBABILITIES.events.childhood.born,
     ageRange: { min: 0, max: 0 }
   },
   {
@@ -22,7 +23,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Você disse suas primeiras palavras! Seus pais estão muito orgulhosos.',
     type: 'positive',
     effects: { happiness: 5, intelligence: 2 },
-    probability: 80,
+    probability: PROBABILITIES.events.childhood.firstWords,
     ageRange: { min: 1, max: 2 }
   },
   {
@@ -31,7 +32,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Você deu seus primeiros passos! Uma nova fase da vida começa.',
     type: 'positive',
     effects: { happiness: 3, health: 2 },
-    probability: 85,
+    probability: PROBABILITIES.events.childhood.firstSteps,
     ageRange: { min: 1, max: 2 }
   },
   {
@@ -40,7 +41,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Você começou a frequentar o jardim de infância. Novos amigos e experiências!',
     type: 'positive',
     effects: { happiness: 4, intelligence: 3, popularity: 2 },
-    probability: 90,
+    probability: PROBABILITIES.events.childhood.kindergarten,
     ageRange: { min: 3, max: 5 }
   },
   {
@@ -49,7 +50,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Você ficou doente, mas se recuperou rapidamente.',
     type: 'negative',
     effects: { health: -5, happiness: -2 },
-    probability: 30,
+    probability: PROBABILITIES.events.childhood.childhoodIllness,
     ageRange: { min: 0, max: 12 }
   },
   {
@@ -58,7 +59,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Seus pais descobriram que você tem um talento especial!',
     type: 'positive',
     effects: { happiness: 6, intelligence: 3 },
-    probability: 20,
+    probability: PROBABILITIES.events.childhood.talentDiscovery,
     ageRange: { min: 3, max: 12 }
   },
   {
@@ -67,7 +68,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Sua família está sempre ao seu lado, te dando apoio e carinho.',
     type: 'positive',
     effects: { happiness: 8, health: 3 },
-    probability: 60,
+    probability: PROBABILITIES.events.childhood.familySupport,
     ageRange: { min: 0, max: 18 }
   },
   {
@@ -76,7 +77,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Houve uma discussão em casa. As relações estão um pouco tensas.',
     type: 'negative',
     effects: { happiness: -5, popularity: -2 },
-    probability: 30,
+    probability: PROBABILITIES.events.childhood.familyConflict,
     ageRange: { min: 10, max: 25 }
   },
   {
@@ -85,7 +86,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Você ganhou um novo irmão! A família cresceu.',
     type: 'positive',
     effects: { happiness: 4, popularity: 2 },
-    probability: 15,
+    probability: PROBABILITIES.events.childhood.siblingBirth,
     ageRange: { min: 0, max: 15 }
   },
   {
@@ -94,7 +95,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Sua família fez uma viagem incrível! Momentos especiais juntos.',
     type: 'positive',
     effects: { happiness: 10, intelligence: 2 },
-    probability: 25,
+    probability: PROBABILITIES.events.childhood.familyTrip,
     ageRange: { min: 5, max: 20 }
   },
 
@@ -105,7 +106,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'As mudanças da adolescência começaram. É uma fase complicada.',
     type: 'neutral',
     effects: { happiness: -3, looks: 5 },
-    probability: 100,
+    probability: PROBABILITIES.events.adolescence.puberty,
     ageRange: { min: 13, max: 15 }
   },
   {
@@ -114,7 +115,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Você se apaixonou pela primeira vez!',
     type: 'positive',
     effects: { happiness: 8, popularity: 3 },
-    probability: 70,
+    probability: PROBABILITIES.events.adolescence.firstCrush,
     ageRange: { min: 13, max: 17 }
   },
   {
@@ -123,7 +124,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Você está sofrendo bullying na escola.',
     type: 'negative',
     effects: { happiness: -10, health: -3, popularity: -5 },
-    probability: 25,
+    probability: PROBABILITIES.events.adolescence.schoolBully,
     ageRange: { min: 13, max: 17 }
   },
   {
@@ -132,7 +133,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Você se destacou academicamente!',
     type: 'positive',
     effects: { happiness: 5, intelligence: 8, popularity: 3 },
-    probability: 15,
+    probability: PROBABILITIES.events.adolescence.academicExcellence,
     ageRange: { min: 13, max: 17 }
   },
   {
@@ -141,7 +142,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Você está passando por uma fase rebelde.',
     type: 'negative',
     effects: { happiness: -5, popularity: -3 },
-    probability: 40,
+    probability: PROBABILITIES.events.adolescence.teenRebellion,
     ageRange: { min: 14, max: 17 }
   },
 
@@ -152,7 +153,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Você se formou no ensino médio!',
     type: 'positive',
     effects: { happiness: 10, intelligence: 5 },
-    probability: 95,
+    probability: PROBABILITIES.events.youngAdult.highSchoolGraduation,
     ageRange: { min: 17, max: 19 }
   },
   {
@@ -162,7 +163,7 @@ export const gameEvents: EventTemplate[] = [
     type: 'positive',
     effects: { happiness: 12, intelligence: 8, money: -5000 },
     requirements: { minIntelligence: 60 },
-    probability: 60,
+    probability: PROBABILITIES.events.youngAdult.collegeAdmission,
     ageRange: { min: 18, max: 20 }
   },
   {
@@ -171,7 +172,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Você conseguiu seu primeiro emprego!',
     type: 'positive',
     effects: { happiness: 8, money: 2000 },
-    probability: 70,
+    probability: PROBABILITIES.events.youngAdult.firstJob,
     ageRange: { min: 18, max: 22 }
   },
   {
@@ -181,7 +182,7 @@ export const gameEvents: EventTemplate[] = [
     type: 'negative',
     effects: { happiness: -8, intelligence: -5 },
     requirements: { hasEducation: true },
-    probability: 15,
+    probability: PROBABILITIES.events.youngAdult.collegeDropout,
     ageRange: { min: 19, max: 23 }
   },
   {
@@ -190,7 +191,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Você começou um relacionamento sério.',
     type: 'positive',
     effects: { happiness: 10, popularity: 5 },
-    probability: 50,
+    probability: PROBABILITIES.events.youngAdult.seriousRelationship,
     ageRange: { min: 20, max: 25 }
   },
 
@@ -202,7 +203,7 @@ export const gameEvents: EventTemplate[] = [
     type: 'positive',
     effects: { happiness: 15, money: -10000 },
     requirements: { hasRelationship: true },
-    probability: 40,
+    probability: PROBABILITIES.events.adult.marriage,
     ageRange: { min: 25, max: 35 }
   },
   {
@@ -212,7 +213,7 @@ export const gameEvents: EventTemplate[] = [
     type: 'positive',
     effects: { happiness: 20, money: -5000 },
     requirements: { hasRelationship: true },
-    probability: 30,
+    probability: PROBABILITIES.events.adult.childBirth,
     ageRange: { min: 25, max: 40 }
   },
   {
@@ -222,7 +223,7 @@ export const gameEvents: EventTemplate[] = [
     type: 'positive',
     effects: { happiness: 8, money: 5000 },
     requirements: { isEmployed: true },
-    probability: 25,
+    probability: PROBABILITIES.events.adult.jobPromotion,
     ageRange: { min: 26, max: 50 }
   },
   {
@@ -232,7 +233,7 @@ export const gameEvents: EventTemplate[] = [
     type: 'negative',
     effects: { happiness: -15, money: -3000 },
     requirements: { isEmployed: true },
-    probability: 10,
+    probability: PROBABILITIES.events.adult.jobLoss,
     ageRange: { min: 26, max: 50 }
   },
   {
@@ -242,7 +243,7 @@ export const gameEvents: EventTemplate[] = [
     type: 'negative',
     effects: { happiness: -20, money: -15000 },
     requirements: { hasRelationship: true },
-    probability: 15,
+    probability: PROBABILITIES.events.adult.divorce,
     ageRange: { min: 30, max: 50 }
   },
   {
@@ -251,7 +252,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Você recebeu uma herança inesperada.',
     type: 'positive',
     effects: { happiness: 10, money: 50000 },
-    probability: 5,
+    probability: PROBABILITIES.events.adult.inheritance,
     ageRange: { min: 25, max: 60 }
   },
 
@@ -262,7 +263,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Você está passando por uma crise da meia-idade.',
     type: 'negative',
     effects: { happiness: -10, health: -5 },
-    probability: 30,
+    probability: PROBABILITIES.events.middleAge.midlifeCrisis,
     ageRange: { min: 45, max: 55 }
   },
   {
@@ -272,7 +273,7 @@ export const gameEvents: EventTemplate[] = [
     type: 'positive',
     effects: { happiness: 15, money: 10000 },
     requirements: { isEmployed: true },
-    probability: 20,
+    probability: PROBABILITIES.events.middleAge.careerPeak,
     ageRange: { min: 45, max: 60 }
   },
   {
@@ -281,7 +282,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Você começou a ter problemas de saúde.',
     type: 'negative',
     effects: { health: -15, happiness: -8 },
-    probability: 25,
+    probability: PROBABILITIES.events.middleAge.healthIssues,
     ageRange: { min: 50, max: 65 }
   },
 
@@ -293,7 +294,7 @@ export const gameEvents: EventTemplate[] = [
     type: 'positive',
     effects: { happiness: 10, money: 20000 },
     requirements: { isEmployed: true },
-    probability: 90,
+    probability: PROBABILITIES.events.senior.retirement,
     ageRange: { min: 65, max: 70 }
   },
   {
@@ -302,7 +303,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Você se tornou avô/avó!',
     type: 'positive',
     effects: { happiness: 15 },
-    probability: 40,
+    probability: PROBABILITIES.events.senior.grandchildren,
     ageRange: { min: 60, max: 75 }
   },
   {
@@ -311,7 +312,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Você foi diagnosticado com uma doença grave.',
     type: 'negative',
     effects: { health: -30, happiness: -20 },
-    probability: 20,
+    probability: PROBABILITIES.events.senior.seriousIllness,
     ageRange: { min: 70, max: 90 }
   },
   {
@@ -320,7 +321,7 @@ export const gameEvents: EventTemplate[] = [
     description: 'Sua jornada chegou ao fim.',
     type: 'neutral',
     effects: {},
-    probability: 5,
+    probability: PROBABILITIES.events.senior.death,
     ageRange: { min: 70, max: 100 }
   }
 ];
