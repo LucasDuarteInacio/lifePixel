@@ -1,0 +1,18 @@
+<Project Sdk="Godot.NET.Sdk/4.7.2">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>LifeSimulator</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="tests/**/*.cs" />
+    <Compile Remove="docs/**/*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="data/countries.json" LogicalName="LifeSimulator.countries.json" />
+    <EmbeddedResource Include="data/careers.json" LogicalName="LifeSimulator.careers.json" />
+  </ItemGroup>
+</Project>

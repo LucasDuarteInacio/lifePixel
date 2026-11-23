@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100d1b">
+<title>VÉRTICE — Início | Protótipo de interface Godot</title>
+<style>
+:root{
+  --bg:#100d1b;--surface:#191428;--surface2:#211a33;--surface3:#2b2141;
+  --stroke:#3b2d55;--purple:#9b78eb;--purple2:#7650c7;
+  --text:#f4efff;--muted:#a99fba;--green:#68d6a2;--gold:#edc66e;
+}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+button{font:inherit;color:inherit;cursor:pointer}
+.screen{width:100%;max-width:480px;min-height:100vh;margin:auto;padding:16px;display:flex;flex-direction:column;gap:14px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:38px;height:38px;border-radius:11px;background:var(--purple2);display:grid;place-items:center;font-size:21px}
+.brand-name{font-size:14px;font-weight:800;letter-spacing:2.4px}
+.brand-sub{font-size:9px;color:var(--muted);letter-spacing:1.4px;margin-top:3px}
+.top-right{display:flex;align-items:center;gap:7px}
+.date{font-size:10px;color:var(--muted);text-align:right;line-height:1.5}
+.small-btn{width:36px;height:36px;border:1px solid var(--stroke);background:var(--surface);border-radius:10px;font-size:16px}
+.card{background:var(--surface);border:1px solid var(--stroke);border-radius:15px;padding:14px}
+.profile{background:var(--surface2);border-color:#59417c}
+.profile-row{display:flex;align-items:center;gap:13px}
+.portrait{width:84px;height:96px;flex:0 0 84px;border-radius:12px;background:linear-gradient(145deg,#e7b9a5,#a76e9e);display:grid;place-items:center;font-size:48px;border:2px solid #9875cf}
+.kicker{font-size:9px;color:#c2a9f4;letter-spacing:1.5px;font-weight:bold}
+h1{font-size:21px;margin:5px 0;line-height:1.1}
+.profile-info{font-size:11px;line-height:1.6;color:var(--muted)}
+.profile-info strong{color:var(--text)}
+.profile-tag{display:inline-block;margin-top:6px;padding:4px 8px;background:#382851;border-radius:20px;color:#d8c6ff;font-size:9px}
+.profile-footer{display:flex;justify-content:space-between;gap:5px;border-top:1px solid var(--stroke);margin-top:12px;padding-top:10px;color:var(--muted);font-size:9px}
+.profile-footer b{color:var(--text);font-size:11px}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin:0 1px 9px}
+.section-title h2{font-size:12px;margin:0;letter-spacing:.3px}
+.section-title span{font-size:9px;color:var(--muted);letter-spacing:.7px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stat{background:var(--surface);border:1px solid var(--stroke);border-radius:12px;padding:10px}
+.stat-line{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#ded5ed}
+.stat-line b{font-size:11px;color:var(--text)}
+.bar{height:6px;margin-top:8px;background:#342a45;border-radius:8px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:8px}
+.hp{background:#5acb9a}.joy{background:#df8bc0}.mind{background:#9b82ee}.energy{background:#e6bd63}
+.money{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.money small{display:block;color:var(--muted);font-size:9px;letter-spacing:.8px}
+.money strong{display:block;font-size:18px;margin-top:4px}
+.gain{font-size:9px;color:var(--green);white-space:nowrap}
+.actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.action{min-width:0;min-height:74px;background:var(--surface);border:1px solid var(--stroke);border-radius:12px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:7px}
+.action .symbol{font-size:21px}
+.action .label{font-size:9px;color:#e0d8ed}
+.action:active,.small-btn:active,.nav-btn:active{background:var(--surface3)}
+.log{display:flex;flex-direction:column;gap:0}
+.log-item{display:grid;grid-template-columns:30px 1fr;gap:9px;padding:0 0 13px;position:relative}
+.log-item:last-child{padding-bottom:0}
+.log-icon{width:28px;height:28px;border-radius:9px;background:var(--surface3);display:grid;place-items:center}
+.log-title{font-size:10px;font-weight:bold;margin:1px 0 4px}
+.log-desc{font-size:9px;color:var(--muted);line-height:1.5}
+.log-time{font-size:8px;color:#b79ae8;margin-top:4px;letter-spacing:.5px}
+.advance{width:100%;border:0;border-radius:12px;padding:13px 10px;background:var(--purple2);font-size:11px;font-weight:bold;letter-spacing:.6px}
+.advance span{display:block;font-size:9px;font-weight:normal;opacity:.8;margin-top:4px;letter-spacing:0}
+.mobile-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:var(--surface);border:1px solid var(--stroke);border-radius:13px;padding:7px 4px;margin-top:auto}
+.nav-btn{border:0;background:transparent;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px 0;font-size:9px}
+.nav-btn b{font-size:16px;font-weight:normal}
+.nav-btn.active{color:#c9b1ff}
+.toast{position:fixed;left:50%;bottom:15px;transform:translate(-50%,20px);opacity:0;transition:.2s;background:#302344;border:1px solid #795db0;padding:10px 14px;border-radius:10px;font-size:11px;max-width:calc(100vw - 30px);text-align:center;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+/* Tablet: duas áreas com os mesmos blocos de interface */
+@media(min-width:700px){
+ .screen{max-width:900px;padding:24px;gap:17px}
+ .layout{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+ .column{display:flex;flex-direction:column;gap:14px;min-width:0}
+ .section-title{margin-bottom:9px}
+ .mobile-nav{max-width:520px;width:100%;align-self:center;margin-top:0}
+}
+/* Desktop: menu lateral e painel de jogo */
+@media(min-width:1100px){
+ body{background:#0d0a16}
+ .screen{max-width:1440px;min-height:100vh;padding:26px 38px;display:grid;grid-template-columns:190px minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:28px;row-gap:0}
+ .top{grid-column:1;grid-row:1;align-self:start}
+ .top-right{display:none}
+ .desktop-nav{grid-column:1;grid-row:2;display:flex;flex-direction:column;gap:7px;padding-top:24px}
+ .nav-btn{flex-direction:row;justify-content:flex-start;gap:12px;padding:12px;border-radius:10px;font-size:11px}
+ .nav-btn b{width:20px;text-align:center}
+ .nav-btn.active{background:var(--surface3);border:1px solid var(--stroke)}
+ .main{grid-column:2;grid-row:1 / span 2;min-width:0}
+ .date-desktop{display:block}
+ .layout{grid-template-columns:minmax(370px,.9fr) minmax(430px,1.1fr);gap:22px}
+ .column{gap:17px}
+ .profile{padding:18px}
+ .portrait{width:102px;height:116px;flex-basis:102px;font-size:56px}
+ h1{font-size:25px}
+ .card{padding:16px}
+ .section-title h2{font-size:13px}
+ .stat{padding:12px}
+ .stat-line{font-size:11px}
+ .stat-line b{font-size:12px}
+ .action{min-height:88px}
+ .action .symbol{font-size:24px}
+ .action .label{font-size:10px}
+ .log-title{font-size:11px}
+ .log-desc{font-size:10px}
+ .mobile-nav{display:none}
+}
+</style>
+</head>
+<body>
+<div class="screen">
+ <header class="top">
+  <div class="brand"><div class="logo">✦</div><div><div class="brand-name">VÉRTICE</div><div class="brand-sub">SIMULADOR DE VIDA</div></div></div>
+  <div class="top-right"><div class="date">SEGUNDA-FEIRA<br><strong>OUTONO · 2026</strong></div><button class="small-btn" aria-label="Configurações" onclick="toast('Configurações em breve.')">⚙</button></div>
+ </header>
+
+ <nav class="desktop-nav" aria-label="Menu principal">
+  <button class="nav-btn active" onclick="activate(this)"><b>⌂</b>Início</button>
+  <button class="nav-btn" onclick="activate(this);toast('Perfil do personagem em breve.')"><b>♙</b>Personagem</button>
+  <button class="nav-btn" onclick="activate(this);toast('Relações em breve.')"><b>♡</b>Relações</button>
+  <button class="nav-btn" onclick="activate(this);toast('Conquistas em breve.')"><b>✧</b>Conquistas</button>
+  <button class="nav-btn" onclick="activate(this);toast('Configurações em breve.')"><b>⚙</b>Configurações</button>
+ </nav>
+
+ <main class="main">
+  <div class="date date-desktop" style="display:none;margin-bottom:14px;text-align:left">SEGUNDA-FEIRA · <strong>OUTONO · 2026</strong> <span style="margin-left:12px">📍 Belo Horizonte, BR</span></div>
+  <div class="layout">
+   <section class="column">
+    <section class="card profile">
+     <div class="profile-row">
+      <div class="portrait">🧑🏻</div>
+      <div><div class="kicker">SUA JORNADA</div><h1>Alexandre Costa</h1><div class="profile-info"><strong id="age">18 anos</strong> · Solteiro<br><strong>Estudante</strong> · Brasil</div><span class="profile-tag">✦ Uma nova fase começa</span></div>
+     </div>
+     <div class="profile-footer"><span>IDADE <b id="ageFooter">18</b></span><span>ANO <b id="year">2026</b></span><span>GERAÇÃO <b>01</b></span></div>
+    </section>
+
+    <section>
+     <div class="section-title"><h2>Como você está?</h2><span>INDICADORES</span></div>
+     <div class="stats">
+      <div class="stat"><div class="stat-line"><span>♡ Saúde</span><b>86%</b></div><div class="bar"><i class="hp" style="width:86%"></i></div></div>
+      <div class="stat"><div class="stat-line"><span>☼ Felicidade</span><b>72%</b></div><div class="bar"><i class="joy" style="width:72%"></i></div></div>
+      <div class="stat"><div class="stat-line"><span>✧ Inteligência</span><b>64%</b></div><div class="bar"><i class="mind" style="width:64%"></i></div></div>
+      <div class="stat"><div class="stat-line"><span>ϟ Energia</span><b>91%</b></div><div class="bar"><i class="energy" style="width:91%"></i></div></div>
+     </div>
+    </section>
+
+    <section class="card money">
+     <div><small>PATRIMÔNIO DISPONÍVEL</small><strong>R$ 2.450,00</strong></div><span class="gain">↗ + R$ 150 este mês</span>
+    </section>
+   </section>
+
+   <section class="column">
+    <section>
+     <div class="section-title"><h2>O que deseja fazer?</h2><span>ATIVIDADES</span></div>
+     <div class="actions">
+      <button class="action" onclick="toast('Você estudou. Inteligência +2.')"><span class="symbol">📚</span><span class="label">Estudar</span></button>
+      <button class="action" onclick="toast('Você se exercitou. Saúde +2.')"><span class="symbol">🏃</span><span class="label">Exercitar</span></button>
+      <button class="action" onclick="toast('Você socializou. Felicidade +2.')"><span class="symbol">💬</span><span class="label">Socializar</span></button>
+      <button class="action" onclick="toast('Você descansou. Energia recuperada.')"><span class="symbol">🌙</span><span class="label">Descansar</span></button>
+     </div>
+    </section>
+
+    <section>
+     <div class="section-title"><h2>Últimos acontecimentos</h2><span>DIÁRIO DA VIDA</span></div>
+     <div class="card log" id="log">
+      <div class="log-item"><div class="log-icon">🎓</div><div><div class="log-title">Uma oportunidade pela frente</div><div class="log-desc">As aulas começaram. É hora de descobrir no que você realmente quer se tornar bom.</div><div class="log-time">HOJE · 08:30</div></div></div>
+      <div class="log-item"><div class="log-icon">☕</div><div><div class="log-title">Manhã tranquila</div><div class="log-desc">Você tomou café com a família e conversou sobre os planos para o futuro.</div><div class="log-time">ONTEM · 09:15</div></div></div>
+      <div class="log-item"><div class="log-icon">🎂</div><div><div class="log-title">Você completou 18 anos!</div><div class="log-desc">Uma etapa terminou. Muitas possibilidades acabam de se abrir.</div><div class="log-time">HÁ 3 DIAS</div></div></div>
+     </div>
+    </section>
+    <button class="advance" onclick="advance()">AVANÇAR NO TEMPO <span>Descubra o que a vida reserva para você →</span></button>
+   </section>
+  </div>
+
+  <nav class="mobile-nav" aria-label="Menu principal">
+   <button class="nav-btn active" onclick="activate(this)"><b>⌂</b>Início</button>
+   <button class="nav-btn" onclick="activate(this);toast('Perfil do personagem em breve.')"><b>♙</b>Personagem</button>
+   <button class="nav-btn" onclick="activate(this);toast('Relações em breve.')"><b>♡</b>Relações</button>
+   <button class="nav-btn" onclick="activate(this);toast('Conquistas em breve.')"><b>✧</b>Conquistas</button>
+  </nav>
+ </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+let age=18,year=2026,toastTimer;
+function toast(message){const el=document.getElementById('toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2400)}
+function activate(button){const label=button.textContent.trim();document.querySelectorAll('.nav-btn').forEach(n=>n.classList.toggle('active',n.textContent.trim()===label))}
+function advance(){
+ age++;year++;
+ document.getElementById('age').textContent=age+' anos';
+ document.getElementById('ageFooter').textContent=age;
+ document.getElementById('year').textContent=year;
+ const item=document.createElement('div');item.className='log-item';
+ item.innerHTML=`<div class="log-icon">✦</div><div><div class="log-title">Um novo ano começou</div><div class="log-desc">Você fez ${age} anos. Novas escolhas, encontros e desafios esperam por você.</div><div class="log-time">AGORA · ${year}</div></div>`;
+ document.getElementById('log').prepend(item);
+ toast(`Você avançou para ${age} anos.`);
+}
+</script>
+</body>
+</html>

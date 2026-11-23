@@ -1,0 +1,502 @@
+[
+  {
+    "code": "AR",
+    "name": "Argentina",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 700,
+    "medianMonthlySalary": 1100,
+    "maleNames": ["Mateo", "Bautista", "Juan", "Benjamín", "Felipe", "Bruno", "Lorenzo", "Valentino", "Thiago", "Joaquín"],
+    "femaleNames": ["Sofía", "Emma", "Isabella", "Olivia", "Martina", "Catalina", "Delfina", "Valentina", "Guadalupe", "Juana"],
+    "surnames": ["González", "Rodríguez", "Fernández", "García", "López", "Martínez", "Pérez", "Álvarez", "Gómez", "Díaz"]
+  },
+  {
+    "code": "BO",
+    "name": "Bolívia",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 650,
+    "medianMonthlySalary": 900,
+    "maleNames": ["José", "Juan", "Carlos", "Luis", "Miguel", "Jorge", "Alejandro", "Daniel", "Diego", "Andrés"],
+    "femaleNames": ["María", "Ana", "Carmen", "Rosa", "Lucía", "Elena", "Patricia", "Gabriela", "Valeria", "Camila"],
+    "surnames": ["Flores", "Vargas", "Mamani", "Quispe", "Condori", "Rojas", "Choque", "Apaza", "Gutiérrez", "López"]
+  },
+  {
+    "code": "BR",
+    "name": "Brasil",
+    "currencyCode": "BRL",
+    "monthlyCostOfLiving": 1800,
+    "medianMonthlySalary": 2900,
+    "maleNames": ["Miguel", "Arthur", "Gael", "Heitor", "Theo", "Davi", "Gabriel", "Ravi", "Noah", "Samuel"],
+    "femaleNames": ["Helena", "Alice", "Laura", "Maria", "Cecília", "Isabella", "Elisa", "Aurora", "Maitê", "Liz"],
+    "surnames": ["Silva", "Santos", "Oliveira", "Souza", "Pereira", "Costa", "Rodrigues", "Almeida", "Nascimento", "Ferreira"]
+  },
+  {
+    "code": "CL",
+    "name": "Chile",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 800,
+    "medianMonthlySalary": 1100,
+    "maleNames": ["Agustín", "Benjamín", "Vicente", "Matías", "Martín", "Joaquín", "Maximiliano", "Tomás", "Cristóbal", "Facundo"],
+    "femaleNames": ["Sofía", "Emilia", "Isidora", "Julieta", "Trinidad", "Martina", "Florencia", "Antonia", "Amanda", "Maite"],
+    "surnames": ["González", "Muñoz", "Rojas", "Díaz", "Pérez", "Soto", "Contreras", "Silva", "Martínez", "Sepúlveda"]
+  },
+  {
+    "code": "CO",
+    "name": "Colômbia",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 700,
+    "medianMonthlySalary": 900,
+    "maleNames": ["Santiago", "Mateo", "Sebastián", "Matías", "Samuel", "Nicolás", "Alejandro", "Daniel", "Emiliano", "Leonardo"],
+    "femaleNames": ["Valentina", "Isabella", "Sofía", "Salomé", "Mariana", "Valeria", "Antonella", "Sara", "Manuela", "Camila"],
+    "surnames": ["Rodríguez", "Gómez", "González", "García", "Martínez", "López", "Hernández", "Ramírez", "Sánchez", "Muñoz"]
+  },
+  {
+    "code": "EC",
+    "name": "Equador",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 800,
+    "medianMonthlySalary": 1200,
+    "maleNames": ["Santiago", "Matías", "Thiago", "Dylan", "Gael", "Emiliano", "Liam", "Isaac", "Sebastián", "Juan"],
+    "femaleNames": ["Isabella", "Mia", "Antonella", "Victoria", "Emily", "Danna", "Camila", "Sofía", "Valentina", "Samantha"],
+    "surnames": ["García", "Guerrero", "López", "Bravo", "Morales", "Paredes", "Vera", "Cevallos", "Zambrano", "Ortiz"]
+  },
+  {
+    "code": "GY",
+    "name": "Guiana",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 700,
+    "medianMonthlySalary": 1000,
+    "maleNames": ["Kevin", "Michael", "Anthony", "Andrew", "Mark", "Ryan", "Brandon", "Christopher", "Jason", "Devendra"],
+    "femaleNames": ["Melissa", "Tiffany", "Natasha", "Alicia", "Samantha", "Priya", "Anjali", "Kavita", "Shondell", "Marissa"],
+    "surnames": ["Singh", "Persaud", "Khan", "Williams", "Mohammed", "Rampersaud", "Bacchus", "Sukhu", "Fraser", "Thomas"]
+  },
+  {
+    "code": "PY",
+    "name": "Paraguai",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 650,
+    "medianMonthlySalary": 900,
+    "maleNames": ["Santiago", "Thiago", "Mateo", "Benjamín", "Gael", "Lorenzo", "Dante", "Joaquín", "Enzo", "Facundo"],
+    "femaleNames": ["Sofía", "Valentina", "Emma", "Martina", "Julieta", "Delfina", "Isabella", "Catalina", "Zoe", "Mía"],
+    "surnames": ["González", "Benítez", "Martínez", "López", "Giménez", "Vera", "Duarte", "Ramírez", "Rojas", "Ayala"]
+  },
+  {
+    "code": "PE",
+    "name": "Peru",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 600,
+    "medianMonthlySalary": 900,
+    "maleNames": ["Santiago", "Mateo", "Thiago", "Gael", "Sebastián", "Adrián", "Leonardo", "Emiliano", "Joaquín", "Rodrigo"],
+    "femaleNames": ["Valentina", "Sofía", "Isabella", "Camila", "Mia", "Luciana", "Antonella", "Romina", "Danna", "Victoria"],
+    "surnames": ["Quispe", "Flores", "Rojas", "Huamán", "Chávez", "Ramos", "Torres", "Mendoza", "Castillo", "Paredes"]
+  },
+  {
+    "code": "SR",
+    "name": "Suriname",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 700,
+    "medianMonthlySalary": 900,
+    "maleNames": ["Ricardo", "Giovanni", "Sergio", "Dwayne", "Marvin", "Ronaldo", "Jurgen", "Stefano", "Clarence", "Iwan"],
+    "femaleNames": ["Naomi", "Chantal", "Melissa", "Priscilla", "Shanice", "Farisha", "Nadia", "Xaviera", "Rosita", "Kimberly"],
+    "surnames": ["Pinas", "Kruydenhof", "Lieveld", "Amoksi", "Seedorf", "Sabajo", "Chin-A-Loi", "Ramdin", "Bhola", "Wong"]
+  },
+  {
+    "code": "UY",
+    "name": "Uruguai",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 1200,
+    "medianMonthlySalary": 1700,
+    "maleNames": ["Santiago", "Thiago", "Mateo", "Benjamín", "Juan", "Lorenzo", "Felipe", "Agustín", "Bruno", "Joaquín"],
+    "femaleNames": ["Sofía", "Emma", "Martina", "Julieta", "Isabella", "Valentina", "Catalina", "Delfina", "Zoe", "Mía"],
+    "surnames": ["Rodríguez", "García", "González", "Fernández", "López", "Martínez", "Pérez", "Silva", "Silvera", "Olivera"]
+  },
+  {
+    "code": "VE",
+    "name": "Venezuela",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 250,
+    "medianMonthlySalary": 450,
+    "maleNames": ["Santiago", "Sebastián", "Matías", "Diego", "Samuel", "Alejandro", "Jesús", "Andrés", "Gabriel", "Anthony"],
+    "femaleNames": ["Camila", "Valentina", "Isabella", "Sofía", "Victoria", "Gabriela", "Daniela", "Antonella", "Mariana", "Mía"],
+    "surnames": ["Rodríguez", "González", "Hernández", "García", "Pérez", "Martínez", "Rojas", "Díaz", "Ramírez", "Sánchez"]
+  },
+  {
+    "code": "PT",
+    "name": "Portugal",
+    "currencyCode": "EUR",
+    "monthlyCostOfLiving": 1100,
+    "medianMonthlySalary": 1500,
+    "maleNames": ["Francisco", "Santiago", "Afonso", "Duarte", "Tomás", "Miguel", "Rodrigo", "Gabriel", "Lourenço", "Pedro"],
+    "femaleNames": ["Maria", "Alice", "Matilde", "Leonor", "Benedita", "Carolina", "Beatriz", "Mariana", "Camila", "Francisca"],
+    "surnames": ["Silva", "Santos", "Ferreira", "Pereira", "Oliveira", "Costa", "Rodrigues", "Martins", "Sousa", "Fernandes"]
+  },
+  {
+    "code": "ES",
+    "name": "Espanha",
+    "currencyCode": "EUR",
+    "monthlyCostOfLiving": 1400,
+    "medianMonthlySalary": 2100,
+    "maleNames": ["Hugo", "Martín", "Lucas", "Mateo", "Leo", "Daniel", "Alejandro", "Pablo", "Álvaro", "Adrián"],
+    "femaleNames": ["Lucía", "Sofía", "Martina", "María", "Julia", "Paula", "Valeria", "Emma", "Daniela", "Carla"],
+    "surnames": ["García", "Fernández", "González", "Rodríguez", "López", "Martínez", "Sánchez", "Pérez", "Gómez", "Martín"]
+  },
+  {
+    "code": "FR",
+    "name": "França",
+    "currencyCode": "EUR",
+    "monthlyCostOfLiving": 1600,
+    "medianMonthlySalary": 2600,
+    "maleNames": ["Gabriel", "Léo", "Raphaël", "Maël", "Louis", "Noah", "Jules", "Adam", "Arthur", "Hugo"],
+    "femaleNames": ["Jade", "Louise", "Emma", "Alice", "Ambre", "Chloé", "Lina", "Rose", "Léa", "Mia"],
+    "surnames": ["Martin", "Bernard", "Dubois", "Thomas", "Robert", "Richard", "Petit", "Durand", "Leroy", "Moreau"]
+  },
+  {
+    "code": "DE",
+    "name": "Alemanha",
+    "currencyCode": "EUR",
+    "monthlyCostOfLiving": 1700,
+    "medianMonthlySalary": 3900,
+    "maleNames": ["Noah", "Matteo", "Leon", "Paul", "Finn", "Emil", "Luca", "Elias", "Felix", "Theo"],
+    "femaleNames": ["Emilia", "Mia", "Sophia", "Hannah", "Emma", "Lina", "Mila", "Clara", "Lea", "Mathilda"],
+    "surnames": ["Müller", "Schmidt", "Schneider", "Fischer", "Weber", "Meyer", "Wagner", "Becker", "Hoffmann", "Schulz"]
+  },
+  {
+    "code": "IT",
+    "name": "Itália",
+    "currencyCode": "EUR",
+    "monthlyCostOfLiving": 1500,
+    "medianMonthlySalary": 2200,
+    "maleNames": ["Leonardo", "Francesco", "Alessandro", "Lorenzo", "Mattia", "Andrea", "Gabriele", "Riccardo", "Tommaso", "Edoardo"],
+    "femaleNames": ["Sofia", "Aurora", "Giulia", "Ginevra", "Beatrice", "Alice", "Emma", "Giorgia", "Vittoria", "Matilde"],
+    "surnames": ["Rossi", "Russo", "Ferrari", "Esposito", "Bianchi", "Romano", "Colombo", "Ricci", "Marino", "Greco"]
+  },
+  {
+    "code": "GB",
+    "name": "Reino Unido",
+    "currencyCode": "EUR",
+    "monthlyCostOfLiving": 1900,
+    "medianMonthlySalary": 2900,
+    "maleNames": ["Oliver", "George", "Arthur", "Noah", "Muhammad", "Leo", "Oscar", "Archie", "Henry", "Jack"],
+    "femaleNames": ["Olivia", "Amelia", "Isla", "Ava", "Ivy", "Freya", "Lily", "Florence", "Mia", "Sophia"],
+    "surnames": ["Smith", "Jones", "Taylor", "Brown", "Williams", "Wilson", "Johnson", "Davies", "Evans", "Thomas"]
+  },
+  {
+    "code": "NL",
+    "name": "Países Baixos",
+    "currencyCode": "EUR",
+    "monthlyCostOfLiving": 1800,
+    "medianMonthlySalary": 3200,
+    "maleNames": ["Noah", "Sem", "Lucas", "Daan", "Levi", "Finn", "Mees", "Luuk", "Bram", "James"],
+    "femaleNames": ["Emma", "Julia", "Tess", "Sophie", "Zoë", "Sara", "Nora", "Mila", "Yara", "Liv"],
+    "surnames": ["de Jong", "Jansen", "de Vries", "van den Berg", "van Dijk", "Bakker", "Janssen", "Visser", "Smit", "Meijer"]
+  },
+  {
+    "code": "BE",
+    "name": "Bélgica",
+    "currencyCode": "EUR",
+    "monthlyCostOfLiving": 1600,
+    "medianMonthlySalary": 3000,
+    "maleNames": ["Arthur", "Noah", "Liam", "Louis", "Adam", "Jules", "Lucas", "Victor", "Gabriel", "Matteo"],
+    "femaleNames": ["Emma", "Olivia", "Louise", "Alice", "Sofia", "Mila", "Elise", "Juliette", "Léa", "Camille"],
+    "surnames": ["Peeters", "Janssens", "Maes", "Jacobs", "Willems", "Claes", "Dubois", "Lambert", "Martin", "Dupont"]
+  },
+  {
+    "code": "CH",
+    "name": "Suíça",
+    "currencyCode": "EUR",
+    "monthlyCostOfLiving": 3700,
+    "medianMonthlySalary": 6800,
+    "maleNames": ["Noah", "Liam", "Matteo", "Leon", "Luca", "Gabriel", "Elias", "Julian", "Levin", "Nico"],
+    "femaleNames": ["Mia", "Emilia", "Emma", "Sofia", "Elena", "Nora", "Lara", "Lina", "Mila", "Alina"],
+    "surnames": ["Müller", "Meier", "Schmid", "Keller", "Weber", "Huber", "Schneider", "Fischer", "Meyer", "Steiner"]
+  },
+  {
+    "code": "AT",
+    "name": "Áustria",
+    "currencyCode": "EUR",
+    "monthlyCostOfLiving": 1600,
+    "medianMonthlySalary": 3200,
+    "maleNames": ["Paul", "Jakob", "Elias", "Maximilian", "Felix", "David", "Leon", "Jonas", "Tobias", "Lukas"],
+    "femaleNames": ["Emma", "Emilia", "Marie", "Anna", "Lena", "Mia", "Laura", "Sophia", "Valentina", "Johanna"],
+    "surnames": ["Gruber", "Huber", "Bauer", "Wagner", "Müller", "Pichler", "Steiner", "Moser", "Mayer", "Hofer"]
+  },
+  {
+    "code": "IE",
+    "name": "Irlanda",
+    "currencyCode": "EUR",
+    "monthlyCostOfLiving": 2000,
+    "medianMonthlySalary": 3800,
+    "maleNames": ["Jack", "James", "Noah", "Daniel", "Conor", "Tadhg", "Liam", "Finn", "Fionn", "Oisín"],
+    "femaleNames": ["Emily", "Grace", "Fiadh", "Sophie", "Éabha", "Amelia", "Ava", "Mia", "Sadie", "Chloe"],
+    "surnames": ["Murphy", "Kelly", "O'Brien", "Ryan", "Walsh", "O'Connor", "Byrne", "O'Sullivan", "McCarthy", "Doyle"]
+  },
+  {
+    "code": "SE",
+    "name": "Suécia",
+    "currencyCode": "EUR",
+    "monthlyCostOfLiving": 1500,
+    "medianMonthlySalary": 3000,
+    "maleNames": ["Noah", "William", "Liam", "Hugo", "Lucas", "Oliver", "Oscar", "Elias", "Adam", "Matteo"],
+    "femaleNames": ["Alice", "Maja", "Elsa", "Astrid", "Wilma", "Alma", "Selma", "Freja", "Saga", "Ester"],
+    "surnames": ["Johansson", "Andersson", "Karlsson", "Nilsson", "Eriksson", "Larsson", "Olsson", "Persson", "Svensson", "Gustafsson"]
+  },
+  {
+    "code": "NO",
+    "name": "Noruega",
+    "currencyCode": "EUR",
+    "monthlyCostOfLiving": 1900,
+    "medianMonthlySalary": 4000,
+    "maleNames": ["Jakob", "Noah", "Emil", "Lucas", "Oliver", "Filip", "Liam", "William", "Oscar", "Henrik"],
+    "femaleNames": ["Nora", "Emma", "Ella", "Maja", "Olivia", "Emilie", "Sofie", "Leah", "Ingrid", "Frida"],
+    "surnames": ["Hansen", "Johansen", "Olsen", "Larsen", "Andersen", "Pedersen", "Nilsen", "Kristiansen", "Jensen", "Karlsen"]
+  },
+  {
+    "code": "DK",
+    "name": "Dinamarca",
+    "currencyCode": "EUR",
+    "monthlyCostOfLiving": 2000,
+    "medianMonthlySalary": 4500,
+    "maleNames": ["William", "Alfred", "Oscar", "Noah", "Karl", "Valdemar", "Emil", "Oliver", "Arthur", "Aksel"],
+    "femaleNames": ["Alma", "Ella", "Agnes", "Emma", "Freja", "Clara", "Karla", "Josefine", "Olivia", "Astrid"],
+    "surnames": ["Nielsen", "Jensen", "Hansen", "Pedersen", "Andersen", "Christensen", "Larsen", "Sørensen", "Rasmussen", "Jørgensen"]
+  },
+  {
+    "code": "PL",
+    "name": "Polônia",
+    "currencyCode": "EUR",
+    "monthlyCostOfLiving": 1100,
+    "medianMonthlySalary": 1700,
+    "maleNames": ["Antoni", "Jan", "Aleksander", "Franciszek", "Jakub", "Leon", "Mikołaj", "Nikodem", "Filip", "Stanisław"],
+    "femaleNames": ["Zofia", "Zuzanna", "Julia", "Maja", "Hanna", "Lena", "Alicja", "Maria", "Oliwia", "Amelia"],
+    "surnames": ["Nowak", "Kowalski", "Wiśniewski", "Wójcik", "Kowalczyk", "Kamiński", "Lewandowski", "Zieliński", "Szymański", "Woźniak"]
+  },
+  {
+    "code": "US",
+    "name": "Estados Unidos",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 2400,
+    "medianMonthlySalary": 4200,
+    "maleNames": ["James", "Liam", "Noah", "Oliver", "Elijah", "Henry", "Lucas", "Theodore", "Jack", "Owen"],
+    "femaleNames": ["Olivia", "Emma", "Charlotte", "Amelia", "Sophia", "Mia", "Isabella", "Ava", "Evelyn", "Luna"],
+    "surnames": ["Smith", "Johnson", "Brown", "Williams", "Jones", "Miller", "Davis", "Wilson", "Anderson", "Taylor"]
+  },
+  {
+    "code": "CA",
+    "name": "Canadá",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 1900,
+    "medianMonthlySalary": 3200,
+    "maleNames": ["Noah", "Liam", "Oliver", "Theodore", "Lucas", "Jack", "Benjamin", "Ethan", "Leo", "William"],
+    "femaleNames": ["Olivia", "Emma", "Charlotte", "Amelia", "Sophia", "Ava", "Chloe", "Mia", "Isla", "Ellie"],
+    "surnames": ["Smith", "Brown", "Tremblay", "Martin", "Roy", "Wilson", "MacDonald", "Gagnon", "Johnson", "Lee"]
+  },
+  {
+    "code": "MX",
+    "name": "México",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 700,
+    "medianMonthlySalary": 1100,
+    "maleNames": ["Santiago", "Mateo", "Leonardo", "Matías", "Thiago", "Sebastián", "Diego", "Emiliano", "Liam", "Alexander"],
+    "femaleNames": ["Sofía", "Valentina", "Regina", "María José", "Ximena", "Camila", "Valeria", "Renata", "Victoria", "Isabella"],
+    "surnames": ["Hernández", "García", "Martínez", "López", "González", "Pérez", "Rodríguez", "Sánchez", "Ramírez", "Cruz"]
+  },
+  {
+    "code": "JP",
+    "name": "Japão",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 1100,
+    "medianMonthlySalary": 2100,
+    "maleNames": ["Haruto", "Sota", "Yuto", "Aoi", "Ren", "Minato", "Riku", "Kaito", "Hinata", "Asahi"],
+    "femaleNames": ["Yui", "Aoi", "Hina", "Sakura", "Mei", "Rin", "Akari", "Yuna", "Saki", "Himari"],
+    "surnames": ["Sato", "Suzuki", "Takahashi", "Tanaka", "Watanabe", "Yamamoto", "Nakamura", "Kobayashi", "Kato", "Yoshida"]
+  },
+  {
+    "code": "CN",
+    "name": "China",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 700,
+    "medianMonthlySalary": 1300,
+    "maleNames": ["Yichen", "Haoran", "Zixuan", "Yuxuan", "Minghao", "Yuchen", "Zihao", "Junjie", "Wei", "Lei"],
+    "femaleNames": ["Yutong", "Xinyi", "Yining", "Zihan", "Shihan", "Jiaqi", "Mengyao", "Xinran", "Mei", "Fang"],
+    "surnames": ["Wang", "Li", "Zhang", "Liu", "Chen", "Yang", "Huang", "Zhao", "Wu", "Zhou"]
+  },
+  {
+    "code": "KR",
+    "name": "Coreia do Sul",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 1300,
+    "medianMonthlySalary": 2300,
+    "maleNames": ["Ijun", "Seojun", "Hajun", "Dojun", "Eunwoo", "Siwoo", "Jiho", "Minjun", "Yechan", "Yujun"],
+    "femaleNames": ["Seoah", "Iseo", "Jia", "Harin", "Yuna", "Sua", "Jian", "Ayeon", "Seoyeon", "Haeun"],
+    "surnames": ["Kim", "Lee", "Park", "Choi", "Jung", "Kang", "Cho", "Yoon", "Jang", "Lim"]
+  },
+  {
+    "code": "IN",
+    "name": "Índia",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 300,
+    "medianMonthlySalary": 550,
+    "maleNames": ["Muhammad", "Aarav", "Vihaan", "Advait", "Sai", "Atharv", "Reyansh", "Arjun", "Krishna", "Vivaan"],
+    "femaleNames": ["Sadiya", "Aadhya", "Myra", "Anika", "Aaradhya", "Diya", "Sara", "Ira", "Priya", "Navya"],
+    "surnames": ["Kumar", "Singh", "Sharma", "Patel", "Gupta", "Khan", "Das", "Rao", "Reddy", "Mehta"]
+  },
+  {
+    "code": "ID",
+    "name": "Indonésia",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 350,
+    "medianMonthlySalary": 550,
+    "maleNames": ["Muhammad", "Raffa", "Alvaro", "Kenzie", "Bima", "Arka", "Rehan", "Danendra", "Gibran", "Fadhil"],
+    "femaleNames": ["Aisyah", "Amina", "Queenza", "Aleena", "Zara", "Khansa", "Naura", "Humaira", "Gendis", "Alesha"],
+    "surnames": ["Hidayat", "Saputra", "Wijaya", "Pratama", "Santoso", "Setiawan", "Nugroho", "Gunawan", "Siregar", "Wibowo"]
+  },
+  {
+    "code": "TH",
+    "name": "Tailândia",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 550,
+    "medianMonthlySalary": 950,
+    "maleNames": ["Nattawut", "Thanakorn", "Kittipong", "Supachai", "Anan", "Chai", "Somchai", "Prasert", "Wichai", "Apichart"],
+    "femaleNames": ["Siriwan", "Nongnuch", "Malee", "Kanya", "Priya", "Achara", "Mali", "Ratana", "Sunisa", "Chantha"],
+    "surnames": ["Saetang", "Boonmee", "Srisai", "Chaiyaporn", "Wongsuwan", "Thongchai", "Rakngam", "Suwannarat", "Phrommi", "Kaewsai"]
+  },
+  {
+    "code": "VN",
+    "name": "Vietnã",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 450,
+    "medianMonthlySalary": 800,
+    "maleNames": ["Minh", "Anh", "Khoa", "Bao", "Duy", "Phuc", "Huy", "Tuan", "Nam", "Khai"],
+    "femaleNames": ["Linh", "Ngoc", "Anh", "Thu", "Trang", "Mai", "Hien", "Thao", "Yen", "Quynh"],
+    "surnames": ["Nguyen", "Tran", "Le", "Pham", "Hoang", "Huynh", "Vu", "Vo", "Dang", "Bui"]
+  },
+  {
+    "code": "PH",
+    "name": "Filipinas",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 450,
+    "medianMonthlySalary": 800,
+    "maleNames": ["Nathaniel", "Jacob", "Ezekiel", "Gabriel", "Nathan", "James", "John", "Mark", "Christian", "Joshua"],
+    "femaleNames": ["Angel", "Princess", "Althea", "Samantha", "Nicole", "Ashley", "Sophia", "Alexa", "Ysabel", "Margaux"],
+    "surnames": ["dela Cruz", "Santos", "Reyes", "Cruz", "Bautista", "Ocampo", "Garcia", "Mendoza", "Torres", "Flores"]
+  },
+  {
+    "code": "SA",
+    "name": "Arábia Saudita",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 1600,
+    "medianMonthlySalary": 2900,
+    "maleNames": ["Mohammed", "Fahd", "Abdullah", "Abdulaziz", "Salem", "Khalid", "Saud", "Turki", "Sultan", "Salman"],
+    "femaleNames": ["Fatimah", "Maryam", "Sarah", "Noura", "Reem", "Lina", "Aisha", "Haya", "Jouri", "Lamia"],
+    "surnames": ["Al-Ghamdi", "Al-Otaibi", "Al-Qahtani", "Al-Harbi", "Al-Dossari", "Al-Mutairi", "Al-Shammari", "Al-Zahrani", "Al-Subaie", "Al-Rashid"]
+  },
+  {
+    "code": "TR",
+    "name": "Turquia",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 900,
+    "medianMonthlySalary": 1400,
+    "maleNames": ["Yusuf", "Alparslan", "Metehan", "Göktuğ", "Miran", "Ömer", "Kerem", "Eymen", "Aras", "Ali"],
+    "femaleNames": ["Zeynep", "Elif", "Defne", "Asel", "Miray", "Azra", "Ecrin", "Göknur", "Asya", "Zümra"],
+    "surnames": ["Yılmaz", "Kaya", "Demir", "Şahin", "Çelik", "Yıldız", "Yıldırım", "Öztürk", "Aydın", "Özdemir"]
+  },
+  {
+    "code": "NG",
+    "name": "Nigéria",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 180,
+    "medianMonthlySalary": 350,
+    "maleNames": ["Chinedu", "Olumide", "Ibrahim", "Emeka", "Adebayo", "Tunde", "Nnamdi", "Obinna", "Yusuf", "Femi"],
+    "femaleNames": ["Amara", "Ngozi", "Fatima", "Adaeze", "Blessing", "Chioma", "Halima", "Yetunde", "Zainab", "Ifeoma"],
+    "surnames": ["Okafor", "Adeyemi", "Ibrahim", "Nwosu", "Balogun", "Eze", "Ogunleye", "Abubakar", "Olawale", "Uche"]
+  },
+  {
+    "code": "ZA",
+    "name": "África do Sul",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 650,
+    "medianMonthlySalary": 1200,
+    "maleNames": ["Lethabo", "Lubanzi", "Junior", "Melokuhle", "Banele", "Sipho", "Thabo", "Katlego", "Lesedi", "Amohelang"],
+    "femaleNames": ["Omphile", "Iminathi", "Lisakhanya", "Amahle", "Zinhle", "Naledi", "Precious", "Karabo", "Refilwe", "Thandiwe"],
+    "surnames": ["Dlamini", "Nkosi", "Ndlovu", "Khumalo", "Sithole", "Zulu", "Mokoena", "Botha", "van der Merwe", "Ngcobo"]
+  },
+  {
+    "code": "EG",
+    "name": "Egito",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 300,
+    "medianMonthlySalary": 500,
+    "maleNames": ["Mohamed", "Ahmed", "Mahmoud", "Mostafa", "Youssef", "Omar", "Karim", "Ali", "Hassan", "Hussein"],
+    "femaleNames": ["Fatma", "Mariam", "Aya", "Habiba", "Salma", "Nour", "Malak", "Hana", "Jana", "Farida"],
+    "surnames": ["El-Sayed", "Hassan", "Ibrahim", "Mahmoud", "Ali", "Abdelrahman", "Mostafa", "Khalil", "Farouk", "Salem"]
+  },
+  {
+    "code": "KE",
+    "name": "Quênia",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 550,
+    "medianMonthlySalary": 900,
+    "maleNames": ["Brian", "Kevin", "David", "John", "James", "Dennis", "Collins", "Felix", "Emmanuel", "Ian"],
+    "femaleNames": ["Faith", "Mary", "Grace", "Esther", "Mercy", "Cynthia", "Joy", "Sharon", "Brenda", "Ivy"],
+    "surnames": ["Mwangi", "Kamau", "Otieno", "Ochieng", "Kiprop", "Maina", "Wanjiru", "Njeri", "Ouma", "Karanja"]
+  },
+  {
+    "code": "MA",
+    "name": "Marrocos",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 600,
+    "medianMonthlySalary": 1000,
+    "maleNames": ["Mohamed", "Amine", "Yassine", "Omar", "Ayoub", "Adam", "Rayan", "Anas", "Hamza", "Mehdi"],
+    "femaleNames": ["Sara", "Yasmine", "Salma", "Nour", "Imane", "Khadija", "Mariam", "Aya", "Rim", "Hiba"],
+    "surnames": ["Alaoui", "Benali", "El Fassi", "Berrada", "Tazi", "Amrani", "Chraibi", "Idrissi", "Belkadi", "Mansouri"]
+  },
+  {
+    "code": "GH",
+    "name": "Gana",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 300,
+    "medianMonthlySalary": 550,
+    "maleNames": ["Kwame", "Kofi", "Kwabena", "Yaw", "Emmanuel", "Daniel", "Samuel", "Isaac", "Kwaku", "Fiifi"],
+    "femaleNames": ["Ama", "Abena", "Akua", "Efua", "Adjoa", "Yaa", "Esi", "Afia", "Serwaa", "Adwoa"],
+    "surnames": ["Mensah", "Owusu", "Boateng", "Asante", "Osei", "Agyemang", "Appiah", "Darko", "Opoku", "Frimpong"]
+  },
+  {
+    "code": "ET",
+    "name": "Etiópia",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 250,
+    "medianMonthlySalary": 450,
+    "maleNames": ["Yonas", "Abel", "Dawit", "Samuel", "Daniel", "Natnael", "Biruk", "Kidus", "Eyob", "Haile"],
+    "femaleNames": ["Hana", "Saron", "Meron", "Bethlehem", "Ruth", "Liya", "Selam", "Eden", "Tsion", "Bethel"],
+    "surnames": ["Tesfaye", "Bekele", "Alemu", "Haile", "Girma", "Worku", "Mengistu", "Tadesse", "Assefa", "Tekle"]
+  },
+  {
+    "code": "AO",
+    "name": "Angola",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 300,
+    "medianMonthlySalary": 500,
+    "maleNames": ["José", "João", "Manuel", "António", "Carlos", "Domingos", "Pedro", "Paulo", "Sebastião", "Adão"],
+    "femaleNames": ["Maria", "Ana", "Luísa", "Esperança", "Teresa", "Isabel", "Rosa", "Francisca", "Josélia", "Mónica"],
+    "surnames": ["dos Santos", "Ferreira", "Gonçalves", "Domingos", "Miguel", "Neto", "Cassule", "Chipenda", "Kiala", "Ngola"]
+  },
+  {
+    "code": "MZ",
+    "name": "Moçambique",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 450,
+    "medianMonthlySalary": 750,
+    "maleNames": ["João", "José", "Carlos", "Armando", "Ernesto", "Domingos", "Alberto", "Mário", "Nelson", "David"],
+    "femaleNames": ["Maria", "Ana", "Esperança", "Rosa", "Laura", "Juliana", "Marta", "Teresa", "Isabel", "Benedita"],
+    "surnames": ["Cossa", "Sitoe", "Machava", "Tembe", "Munguambe", "Chissano", "Matsinhe", "Nhaca", "Langa", "Zavale"]
+  },
+  {
+    "code": "DZ",
+    "name": "Argélia",
+    "currencyCode": "USD",
+    "monthlyCostOfLiving": 550,
+    "medianMonthlySalary": 900,
+    "maleNames": ["Mohamed", "Amine", "Walid", "Karim", "Yacine", "Sofiane", "Mehdi", "Riad", "Islam", "Ayoub"],
+    "femaleNames": ["Amel", "Sara", "Yasmine", "Nour", "Lina", "Meriem", "Rania", "Imane", "Assia", "Lyna"],
+    "surnames": ["Benali", "Boumediene", "Haddad", "Mansouri", "Cherif", "Belkacem", "Ziani", "Saadi", "Merbah", "Hamidi"]
+  }
+]

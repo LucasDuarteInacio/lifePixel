@@ -1,0 +1,97 @@
+[
+  {
+    "id": "medicina",
+    "name": "Medicina",
+    "description": "Da residência ao comando de um hospital inteiro.",
+    "keyAttribute": "Intelligence",
+    "minAge": 24,
+    "levels": [
+      { "level": 1, "title": "Interno de medicina", "salaryFactor": 0.4 },
+      { "level": 2, "title": "Médico residente", "salaryFactor": 0.8 },
+      { "level": 3, "title": "Médico generalista", "salaryFactor": 1.2 },
+      { "level": 4, "title": "Médico especialista", "salaryFactor": 1.8 },
+      { "level": 5, "title": "Médico titular", "salaryFactor": 2.4 },
+      { "level": 6, "title": "Médico sênior", "salaryFactor": 3.2 },
+      { "level": 7, "title": "Médico coordenador", "salaryFactor": 4.2 },
+      { "level": 8, "title": "Diretor clínico", "salaryFactor": 5.5 },
+      { "level": 9, "title": "Diretor médico", "salaryFactor": 7.0 },
+      { "level": 10, "title": "Diretor de hospital", "salaryFactor": 9.0 }
+    ]
+  },
+  {
+    "id": "tecnologia",
+    "name": "Tecnologia",
+    "description": "Do primeiro código à liderança de toda a engenharia.",
+    "keyAttribute": "Intelligence",
+    "minAge": 18,
+    "levels": [
+      { "level": 1, "title": "Estagiário de desenvolvimento", "salaryFactor": 0.5 },
+      { "level": 2, "title": "Desenvolvedor júnior", "salaryFactor": 0.8 },
+      { "level": 3, "title": "Desenvolvedor pleno", "salaryFactor": 1.1 },
+      { "level": 4, "title": "Desenvolvedor sênior", "salaryFactor": 1.5 },
+      { "level": 5, "title": "Desenvolvedor especialista", "salaryFactor": 2.0 },
+      { "level": 6, "title": "Líder técnico", "salaryFactor": 2.6 },
+      { "level": 7, "title": "Arquiteto de software", "salaryFactor": 3.4 },
+      { "level": 8, "title": "Gerente de engenharia", "salaryFactor": 4.5 },
+      { "level": 9, "title": "Diretor de engenharia", "salaryFactor": 6.5 },
+      { "level": 10, "title": "Diretor de tecnologia (CTO)", "salaryFactor": 10.0 }
+    ]
+  },
+  {
+    "id": "negocios",
+    "name": "Negócios",
+    "description": "Do escritório ao topo da hierarquia corporativa.",
+    "keyAttribute": "Ambition",
+    "minAge": 18,
+    "levels": [
+      { "level": 1, "title": "Auxiliar administrativo", "salaryFactor": 0.5 },
+      { "level": 2, "title": "Assistente administrativo", "salaryFactor": 0.7 },
+      { "level": 3, "title": "Analista júnior", "salaryFactor": 0.9 },
+      { "level": 4, "title": "Analista pleno", "salaryFactor": 1.2 },
+      { "level": 5, "title": "Analista sênior", "salaryFactor": 1.6 },
+      { "level": 6, "title": "Gerente", "salaryFactor": 2.2 },
+      { "level": 7, "title": "Gerente sênior", "salaryFactor": 3.0 },
+      { "level": 8, "title": "Diretor de departamento", "salaryFactor": 4.5 },
+      { "level": 9, "title": "Vice-presidente", "salaryFactor": 7.0 },
+      { "level": 10, "title": "Presidente (CEO)", "salaryFactor": 12.0 }
+    ]
+  },
+  {
+    "id": "educacao",
+    "name": "Educação",
+    "description": "Da sala de aula à reitoria de uma universidade.",
+    "keyAttribute": "Communication",
+    "minAge": 21,
+    "levels": [
+      { "level": 1, "title": "Monitor escolar", "salaryFactor": 0.4 },
+      { "level": 2, "title": "Professor auxiliar", "salaryFactor": 0.6 },
+      { "level": 3, "title": "Professor", "salaryFactor": 0.8 },
+      { "level": 4, "title": "Professor titular", "salaryFactor": 1.0 },
+      { "level": 5, "title": "Coordenador pedagógico", "salaryFactor": 1.3 },
+      { "level": 6, "title": "Vice-diretor", "salaryFactor": 1.6 },
+      { "level": 7, "title": "Diretor de escola", "salaryFactor": 2.0 },
+      { "level": 8, "title": "Diretor de rede de ensino", "salaryFactor": 2.4 },
+      { "level": 9, "title": "Vice-reitor", "salaryFactor": 2.8 },
+      { "level": 10, "title": "Reitor de universidade", "salaryFactor": 3.5 }
+    ]
+  },
+  {
+    "id": "gastronomia",
+    "name": "Gastronomia",
+    "description": "Da pia da cozinha ao estrelato internacional.",
+    "keyAttribute": "Creativity",
+    "minAge": 16,
+    "levels": [
+      { "level": 1, "title": "Auxiliar de cozinha", "salaryFactor": 0.4 },
+      { "level": 2, "title": "Cozinheiro", "salaryFactor": 0.5 },
+      { "level": 3, "title": "Cozinheiro sênior", "salaryFactor": 0.7 },
+      { "level": 4, "title": "Sous-chef", "salaryFactor": 0.9 },
+      { "level": 5, "title": "Chef de cozinha", "salaryFactor": 1.1 },
+      { "level": 6, "title": "Chef executivo", "salaryFactor": 1.4 },
+      { "level": 7, "title": "Chef de restaurante próprio", "salaryFactor": 1.8 },
+      { "level": 8, "title": "Chef renomado", "salaryFactor": 2.3 },
+      { "level": 9, "title": "Chef estrelado", "salaryFactor": 3.0 },
+      { "level": 10, "title": "Chef de renome internacional", "salaryFactor": 4.0 }
+    ]
+  }
+]
